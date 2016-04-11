@@ -1,0 +1,392 @@
+@CHARSET "UTF-8";
+.myNav{
+	width:1366px;
+	height:44px;
+	display:inline-block;
+	box-shadow:0px 1px 2px #aaaaaa;
+	background-color:rgba(255,255,255,0.4);
+	position: absolute;
+	z-index: 2;
+	align:center;
+}
+.myCustomUserCenter{
+	position: absolute;
+	left:720px;
+	top:44px;
+	width:200px;
+	height:0px;
+	
+	cursor: pointer;
+	
+}
+.myCustomUserCenter img{
+	display: block;
+	margin-top: -40px;
+	margin-left: auto;
+	margin-right: auto;
+	border:1px solid #EE5B8C;
+	z-index: 3;
+	position: relative;
+}
+.myCustomDropdownPanel span:hover{
+	background-color: #eeeeee;
+	color:#D8537F;
+}
+.myCustomDropdownPanel{
+	position: absolute;
+	top:0px;
+	display:none;
+	background-color: #ffffff;
+	border-radius:0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius:0 0 5px 5pxpx;
+	box-shadow:1px 1px 1px #aaaaaa;
+	z-index:2;
+	cursor: pointer;
+	
+}
+.myCustomFavorite{
+	position: absolute;
+	left:900px;
+	top:44px;
+	width:200px;
+	height:0px;
+	z-index:5;
+	cursor: pointer;
+}
+.myCustomFavorite > a{
+	width:55px;
+	height:45px;
+	display: block;
+	margin-top: -44px;
+	margin-left: auto;
+	margin-right: auto;
+	z-index:6;
+	position: relative;
+	padding-top:9px;
+	text-align: center;
+	
+	color:#000000;
+}
+.myCustomFavorite a:hover{
+	background-color: rgba(255,255,255,0.8);
+}
+
+.myNav > a{
+	margin:0px;
+	padding:10px 0px;
+	left:100px;
+	width:55px;
+	height:44px;
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	color:black;
+	float:left;
+}
+.myNav > a:HOVER {
+	background-color:rgba(255,255,255,0.8);
+}
+.myNav a:HOVER {
+	cursor: pointer;
+}
+
+
+.myNav .right{
+	left:580px;
+}
+.myNav .sign{
+	left:580px;
+	height:50px;
+	border-radius:0 0 8px 8px;
+	-webkit-border-radius: 0 0 8px 8px;
+	-moz-border-radius:0 0 8px 8px;
+	box-shadow:1px 1px 1px #aaaaaa;
+	background-color: #D8537F;
+}
+.myNav .sign:hover{
+	background-color: #aaaaaa;
+}
+.topImg{
+	margin:0px;
+	width:1366px;
+	height:201px;
+	background-image: url("../images/nav.jpg");
+	display: block;
+	align:center;
+	
+}
+.myCustomNavbar{
+	width:1366px;
+	align:center;
+}
+
+.navBlank{
+	position: absolute;
+	left: 200px;
+	display: inline;
+}
+.myCarousel{
+	position:absolute;
+	left:10px;
+	top:10px;
+	display:inline-block;
+	box-shadow:1px 1px 1px #aaaaaa;
+	border-radius:8px;
+	width:520px;
+	height:300px;
+	margin:0px;
+	padding:10px;
+	border:1px solid #eee;
+}
+.myContainer{
+	margin:auto;
+	padding:10px;
+	align:center;
+	width:1162px;
+	height:5000px;
+	display:block;
+	position: relative;
+	top:10px;
+	border-radius:8px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border:1px solid #aaaaaa;
+	background-color: #f2f2f2;
+	
+}
+
+.mySpan1{
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 10px;
+	position: absolute;
+	width: 770px;
+	height:320px;
+}
+.smallImg{
+	position: absolute;
+	left: 530px;
+	top:0px;
+	display: inline-block;
+	width: 240px;
+	padding:10px;
+}
+.myCustomTab{
+	position: absolute;
+	left:790px;
+	top:10px;
+	margin:0px;
+	padding:0px;
+	
+	border-radius:8px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	width:360px;
+	/* height:500px;  */
+	background-color: #F2F2F2;
+}
+.myCustomTab li{
+	width:50px;
+}
+.myCustomAffix{
+	width:50px;
+	position: absolute;
+	display: block;
+	left:1180px;
+	top:-22px;
+	z-index: 3;
+	
+}
+.myCustomSpan2{
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 10px;
+	position: absolute;
+	width: 770px;
+	height:460px;
+	top:350px;
+}
+
+
+.myCustomSpan3{
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 10px;
+	position: absolute;
+	width: 770px;
+	height:430px;
+	top:830px;
+	z-index: 3;
+}
+
+
+.myCustomBreadcrumb{
+	position: absolute;
+	margin: 10px;
+	top:10px;
+	left:10px;
+	width:750px;
+	height:45px;
+	color:#F16985;
+}
+
+
+
+.myCustomSpan4{
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 10px;
+	position: absolute;
+	width: 770px;
+	height:430px;
+	top:1300px;
+	z-index: 3;
+	left:10px;
+}
+
+
+.myCustomButtonTabContent{
+	margin-top: -14px;
+	
+	background-color: #ffffff;
+	
+
+}
+
+.myCustomButtonTabContent .myCustomButtonTabA{
+	width:360px;
+	height:220px;
+	display:block;
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	z-index: 3;
+}
+
+.myCustomButtonTabContent .myCustomButtonTabB{
+	width:360px;
+	height:300px;
+	display: none;
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px
+}
+.myCustomButtonTabContent .myCustomButtonTabC{
+	width:360px;
+	height:400px;
+	display: none;
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px
+}
+.myCustomButtonTabContent .myCustomButtonTabD{
+	width:360px;
+	height:500px;
+	display: none;
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.myCustomButtonTabContent span{
+	display: block;
+	width:340px;
+	height:20px;
+	margin:7px auto;
+	top:15px;
+	padding:auto;
+	
+}
+
+
+.login{
+	background-color: #ffffff;
+	margin:0 auto;
+	border-radius:10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	width:900px;
+	height:500px;
+	box-shadow:1px 1px 1px #aaaaaa;
+	position: relative;
+	top:-100px;
+	
+	
+}
+#alertMsg {
+    display: none;
+    width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px black;
+    padding: 10px;
+    font-size: 12px;
+    position: absolute;
+    text-align: center;
+    background: #fff;
+    z-index: 100000;
+    color: #000000;
+}
+
+#alertMsg_info {
+    padding: 2px 15px;
+    line-height: 1.6em;
+    text-align: left;
+}
+
+#alertMsg_btn1, #alertMsg_btn2 {
+    display: inline-block;
+    background: url(images/gray_btn.png) no-repeat left top;
+    padding-left: 3px;
+    color: #000000;
+    font-size: 12px;
+    text-decoration: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#alertMsg_btn1 cite, #alertMsg_btn2 cite {
+    line-height: 24px;
+    display: inline-block;
+    padding: 0 13px 0 10px;
+    background: url(images/gray_btn.png) no-repeat right top;
+    font-style: normal;
+}
+
+
+
+
+
+
+
+
+/*#E1715B*/
+
+.errorTop{
+	z-index:10;
+	width:100%;
+	height:100px;
+	background-color:#E1715B;
+	box-shadow:0 5px 1px rgba(92,92,92,0.2);
+	position:absolute;
+	
+	display:none;
+}
+.errorText{
+	
+	margin:0px auto;
+	text-align:center;
+}

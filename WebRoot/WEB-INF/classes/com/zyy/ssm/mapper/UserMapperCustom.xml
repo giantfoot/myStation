@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyy.ssm.mapper.UserMapperCustom" >
+	<select id="findUserByUsernameAndPassword" parameterType="com.zyy.ssm.po.User" resultType="com.zyy.ssm.po.User">
+		select user.* from user where user.username = #{username} and user.password = #{password}
+	</select>
+	<select id="findUserByUsername" parameterType="com.zyy.ssm.po.User" resultType="com.zyy.ssm.po.User">
+		select user.* from user where user.username = #{username}
+	</select>
+	<select id="findUserByEmail" parameterType="String" resultType="com.zyy.ssm.po.User">
+		select user.* from user where user.email = #{eamil}
+	</select>
+	<update id="updateStateByPrimaryKey" parameterType="Integer">
+		update user set user.state = 1 where user.userId = #{value}
+	</update>
+</mapper>

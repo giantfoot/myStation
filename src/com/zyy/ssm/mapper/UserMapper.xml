@@ -9,6 +9,7 @@
     <result column="state" property="state" jdbcType="INTEGER" />
     <result column="registerTime" property="registertime" jdbcType="DATE" />
     <result column="validateCode" property="validatecode" jdbcType="VARCHAR" />
+    <result column="header" property="header" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    userId, username, password, email, state, registerTime, validateCode
+    userId, username, password, email, state, registerTime, validateCode, header
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zyy.ssm.po.UserExample" >
     select
@@ -104,10 +105,10 @@
   <insert id="insert" parameterType="com.zyy.ssm.po.User" >
     insert into user (userId, username, password, 
       email, state, registerTime, 
-      validateCode)
+      validateCode, header)
     values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{registertime,jdbcType=DATE}, 
-      #{validatecode,jdbcType=VARCHAR})
+      #{validatecode,jdbcType=VARCHAR}, #{header,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zyy.ssm.po.User" >
     insert into user
@@ -133,6 +134,9 @@
       <if test="validatecode != null" >
         validateCode,
       </if>
+      <if test="header != null" >
+        header,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userid != null" >
@@ -155,6 +159,9 @@
       </if>
       <if test="validatecode != null" >
         #{validatecode,jdbcType=VARCHAR},
+      </if>
+      <if test="header != null" >
+        #{header,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +195,9 @@
       <if test="record.validatecode != null" >
         validateCode = #{record.validatecode,jdbcType=VARCHAR},
       </if>
+      <if test="record.header != null" >
+        header = #{record.header,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +211,8 @@
       email = #{record.email,jdbcType=VARCHAR},
       state = #{record.state,jdbcType=INTEGER},
       registerTime = #{record.registertime,jdbcType=DATE},
-      validateCode = #{record.validatecode,jdbcType=VARCHAR}
+      validateCode = #{record.validatecode,jdbcType=VARCHAR},
+      header = #{record.header,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +238,9 @@
       <if test="validatecode != null" >
         validateCode = #{validatecode,jdbcType=VARCHAR},
       </if>
+      <if test="header != null" >
+        header = #{header,jdbcType=VARCHAR},
+      </if>
     </set>
     where userId = #{userid,jdbcType=INTEGER}
   </update>
@@ -237,7 +251,8 @@
       email = #{email,jdbcType=VARCHAR},
       state = #{state,jdbcType=INTEGER},
       registerTime = #{registertime,jdbcType=DATE},
-      validateCode = #{validatecode,jdbcType=VARCHAR}
+      validateCode = #{validatecode,jdbcType=VARCHAR},
+      header = #{header,jdbcType=VARCHAR}
     where userId = #{userid,jdbcType=INTEGER}
   </update>
 </mapper>

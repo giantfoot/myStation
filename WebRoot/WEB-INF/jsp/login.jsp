@@ -9,14 +9,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'login.jsp' starting page</title>
+    <title>天天动漫login</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="Shortcut Icon" href="images/tv.ico" />
+	<link href="${pageContext.request.contextPath }/images/favicon.ico" rel="shortcut icon">
+	<link rel="Bookmark" href="${pageContext.request.contextPath }/images/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="css/loginStyles.css">
 	<style type="text/css">
 		.login{
@@ -79,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-  <body>
+  <body style="margin:0 auto;width:1366px">
   
  
   	<div style="width:1366px;height:200px;background-color: #EC6690;margin: 0px auto;position:relative">
@@ -112,8 +113,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<img id="code_img" style="width:90px;height:40px;margin-left:10px;position: absolute;"/>
 							</div>
 							
-              				<input type="button" id="login-button" value="Login">
-							
+              				<!-- <input type="button" id="login-button" value="Login"> -->
+							<button type="button" id="login-button" value="Login">Login</button>
 						</form>
 						
 					</div>
@@ -175,12 +176,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 					contentType:'application/json;charset=utf-8',
 				 					data:JSON.stringify(user),
 				 					success:function(result){
-				 						if(result == 'success'){
-				 							 window.location.href='${pageContext.request.contextPath }/user/loginSuccess.action';
-				 							 
-				 						}else{
+				 							if(result == 'success'){
 				 							
-				 						}
+					 							window.location.href='${pageContext.request.contextPath }/user/loginSuccess.action?username='+$('#username').val();
+					 							window.event.returnValue = false;
+					 							
+				 							}else if(result == 'error1'){
+				 								alertMsg("用户名或密码错误!");
+				 							}else if(result == 'error2'){
+				 								alertMsg("用户尚未激活,请前往邮箱激活!");
+				 							}
+				 						
 				 					}
 				 				});
 		}
@@ -217,10 +223,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 			if(result == 'success'){
 					 	
 					 			$().checkUser();
-					 		
+					 			return false;
 				 			}else if(result == 'error'){
 				 				alertMsg("验证码错误");
-				 				
+				 				return false;
 				 			}
 				 		}
 				 	});
@@ -231,6 +237,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 			
 		 			
 		 		}
+		 		return false;
 		 	});
 		 	
 		 	

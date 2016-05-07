@@ -1,5 +1,6 @@
 package com.zyy.ssm.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -9,6 +10,12 @@ import java.io.IOException;
 
 
 
+
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,9 +44,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zyy.ssm.exception.CustomException;
+import com.zyy.ssm.po.Item;
 import com.zyy.ssm.po.User;
+import com.zyy.ssm.service.ItemService;
 import com.zyy.ssm.service.UserService;
 
 
@@ -48,11 +59,22 @@ import com.zyy.ssm.service.UserService;
 
 
 
+
+
+
+
+
+
+
+import com.zyy.ssm.service.impl.ItemServiceImpl;
+
 import verifycodeutil.VerifyCodeUtils;
 
 @RequestMapping("/user")
 @Controller
 public class LoginAndRegisterController {
+	@Autowired
+	private ItemService itemServiceImpl;
 	@Autowired
 	private UserService userServiceImpl;
 	
@@ -84,29 +106,52 @@ public class LoginAndRegisterController {
 			response.getWriter().write("error");
 			
 		}
-		
+		response.flushBuffer();
 	}
 	@RequestMapping("/checkUser")
 	public void checkUser(@RequestBody User user,HttpServletRequest request, HttpServletResponse response,HttpSession session) throws IOException{
-		User userFind = null;
+		
 		if(user != null){
-			userFind = userServiceImpl.findUser(user);
+			user = userServiceImpl.findUser(user);
 		}
-		if(userFind != null){
-			session.setAttribute("user", userFind);
-			response.getWriter().write("success");
+		
+		if(user != null){
+			if(user.getState() == 1){
+				
+				response.getWriter().write("success");
+				
+				
+			}else{
+				response.getWriter().write("error2");
+			}
 		}else{
-			response.getWriter().write("error");
+			response.getWriter().write("error1");
 		}
+		response.flushBuffer();
+		
+		
 	}
 	@RequestMapping("/loginSuccess")
-	public void loginSuccess(HttpServletResponse response,HttpServletRequest request){
-		try {
-			response.sendRedirect(request.getContextPath()+"/index.jsp");
-		} catch (IOException e) {
-			
-			throw new RuntimeException(e);
-		}
+	public void loginSuccess(HttpServletResponse response,HttpServletRequest request,HttpSession session) throws CustomException{
+		String username = request.getParameter("username");
+		
+		User user = new User();
+		user.setUsername(username);
+		
+		user = userServiceImpl.findUserByUsername(user);
+		session.setAttribute("user", user);
+		
+			try {
+				
+				response.sendRedirect(request.getContextPath()+"/index.jsp");
+				
+				
+			} catch (Exception e) {
+				
+				throw new CustomException("登录失败!");
+			}
+		
+		
 	}
 	@RequestMapping("/login")
 	public String login(){
@@ -118,14 +163,19 @@ public class LoginAndRegisterController {
 		response.sendRedirect(request.getContextPath()+"/index.jsp");
 	}
 	/*** register
-	 * @throws IOException **/
+	 * @throws IOException 
+	 * @throws CustomException **/
 	@RequestMapping("/register")
-	public void register(@RequestBody User user,HttpServletResponse response) throws IOException{
+	public void register(@RequestBody User user,HttpServletResponse response) throws IOException, CustomException {
 		
-		
+			try{
 			userServiceImpl.processRegister(user, user.getEmail());
 			response.getWriter().write("success");
-		
+			}catch(Exception e){
+				response.getWriter().write("error");
+				throw new CustomException("注册异常");
+			}
+			response.flushBuffer();
 	}
 	@RequestMapping("/toRegister")
 	public String toRegister(){
@@ -142,6 +192,7 @@ public class LoginAndRegisterController {
 		}else{
 			response.getWriter().write("success");
 		}
+		response.flushBuffer();
 	}
 	@RequestMapping("/validateEmail")
 	public void validateEmail(@RequestParam(required=true) String email,HttpServletResponse response){
@@ -184,8 +235,128 @@ public class LoginAndRegisterController {
 	public String uploadHeader(){
 		return "uploadHeader";
 	}
+	@RequestMapping("/upload")
+	public void upload(MultipartFile header,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IllegalStateException, IOException{
+		if(header != null && header.getOriginalFilename() != null && header.getOriginalFilename().length()>0){
+			String originalFilename = header.getOriginalFilename();
+			String uuid = StringUtils.replace(UUID.randomUUID().toString(), "-", "");
+			String fileName = uuid + "_" + originalFilename;
+			String savePath = request.getServletContext().getRealPath("/images/userHeader");
+			int hashCode = originalFilename.hashCode();
+			String dir1 = Integer.toHexString(hashCode & 0xF);
+			String dir2 = Integer.toHexString(hashCode>>>4 & 0xf);
+			savePath = savePath + "/" + dir1 + "/" + dir2;
+			String headerPath = "images/userHeader/" + dir1 + "/" + dir2 + "/" + fileName;
+			new File(savePath).mkdirs();
+			File file = new File(savePath,fileName);
+			header.transferTo(file);
+			User user = (User) session.getAttribute("user");
+			user.setHeader(headerPath);
+			session.setAttribute("user", user);
+			userServiceImpl.updateHeader(user.getUserid(),headerPath);
+			response.sendRedirect(request.getContextPath()+"/index.jsp");
+			
+		}
+	}
+	@RequestMapping("/search")
+	public String search(@RequestParam String searchName,HttpServletRequest request){
+		List<Item> items = itemServiceImpl.searchItems(searchName);
+		if(items.size() > 0){
+			request.setAttribute("items", items);
+			return "itemList";
+		}else{
+			List<Item> itemList = itemServiceImpl.searchItemsByTab("zztj");
+			request.setAttribute("searchName", searchName);
+			request.setAttribute("items", itemList);
+			return "noResults";
+		}
+		
+	}
+	@RequestMapping("/contentFrame")
+	public String contentFrame(String itemename,HttpServletRequest request){
+		
+			Item item = itemServiceImpl.findItemsByEname(itemename);
+			if(item != null){
+				request.setAttribute("item",item);
+				return "contentFrame";
+			}else{
+				List<Item> itemList = itemServiceImpl.searchItemsByTab("zztj");
+				request.setAttribute("item", item);
+				request.setAttribute("items", itemList);
+				return "noResults";
+			}
+		
+		
+	}
+	@RequestMapping("/result")
+	public String result(){
+		return "result";
+	}
+	@RequestMapping("/navSubject")
+	public String navSubject(@RequestParam String itemtab,HttpServletRequest request){
+		List<Item> items = itemServiceImpl.searchItemsByTab(itemtab);
+		if(items.size() > 0){
+			if("syxf".equals(itemtab)){
+				items.get(0).setItemtab("四月新番");
+			}else if("zztj".equals(itemtab)){
+				items.get(0).setItemtab("站长推荐");
+			}
+			request.setAttribute("items", items);
+			return "navSubject";
+			
+			
+		}
+			
+		return "noResults";
+		
+		
+	}
+	@RequestMapping("/navSubject1")
+	public String navSubject1(@RequestParam String itemtab,HttpServletRequest request){
+		List<Item> items = itemServiceImpl.searchItemsByTab(itemtab);
+		if(items.size() > 0){
+			if("jdhj".equals(itemtab)){
+				items.get(0).setItemtab("经典合集");
+			}else if("gcdm".equals(itemtab)){
+				items.get(0).setItemtab("国产动漫");
+			}
+			request.setAttribute("items", items);
+			return "navSubject1";
+		
+			
+		}
+		
+		return "noResults";
+		
+		
+	}
+	@RequestMapping("/zixun")
+	public String zixun(String topSubject,HttpServletRequest request){
+		request.setAttribute("topSubject", topSubject);
+		return "zixun";
+	}
+	@RequestMapping("/luntan")
+	public String luntan(String topSubject,HttpServletRequest request){
+		request.setAttribute("topSubject", topSubject);
+		return "blank";
+	}
+	@RequestMapping("/zhuanqu")
+	public String zhuanqu(String topSubject,HttpServletRequest request){
+		request.setAttribute("topSubject", topSubject);
+		return "blank";
+	}
+	@RequestMapping("/manhua")
+	public String manhua(String topSubject,HttpServletRequest request){
+		request.setAttribute("topSubject", topSubject);
+		return "zixun";
+	}
+	@RequestMapping("/indexTransfer")
+	public String indexTransfer(){
+		return null;
+	}
 	@RequestMapping("/test")
-	public String test(){
+	public String test(HttpServletRequest request){
 		return "test";
 	}
+	
 }

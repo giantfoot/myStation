@@ -17,6 +17,8 @@ public class User {
 
     private String validatecode;
 
+    private String header;
+
     public Integer getUserid() {
         return userid;
     }
@@ -71,5 +73,13 @@ public class User {
 
     public void setValidatecode(String validatecode) {
         this.validatecode = validatecode == null ? null : validatecode.trim();
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header == null ? null : header.trim();
     }
 }

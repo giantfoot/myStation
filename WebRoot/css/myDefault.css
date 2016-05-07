@@ -47,7 +47,7 @@
 }
 .myCustomFavorite{
 	position: absolute;
-	left:900px;
+	left:920px;
 	top:44px;
 	width:200px;
 	height:0px;
@@ -94,7 +94,7 @@
 
 
 .myNav .right{
-	left:580px;
+	left:600px;
 }
 .myNav .sign{
 	left:580px;
@@ -109,10 +109,10 @@
 	background-color: #aaaaaa;
 }
 .topImg{
-	margin:0px;
+	margin:0px auto;
 	width:1366px;
-	height:201px;
-	background-image: url("../images/nav.jpg");
+	height:200px;
+	background-image: url("../images/nav/nav2.jpg");
 	display: block;
 	align:center;
 	
@@ -145,15 +145,15 @@
 	padding:10px;
 	align:center;
 	width:1162px;
-	height:5000px;
+	height:1750px;
 	display:block;
 	position: relative;
 	top:10px;
 	border-radius:8px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
-	border:1px solid #aaaaaa;
-	background-color: #f2f2f2;
+	
+	background-color: #F2F7F1;
 	
 }
 
@@ -196,9 +196,9 @@
 	width:50px;
 	position: absolute;
 	display: block;
-	left:1180px;
-	top:-22px;
-	z-index: 3;
+	left:1280px;
+	top:262px;
+	z-index: 10000;
 	
 }
 .myCustomSpan2{
@@ -265,41 +265,45 @@
 
 .myCustomButtonTabContent .myCustomButtonTabA{
 	width:360px;
-	height:220px;
+
 	display:block;
 	background-color: #ffffff;
 	border-radius:5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	z-index: 3;
+	padding:10px;
 }
 
 .myCustomButtonTabContent .myCustomButtonTabB{
 	width:360px;
-	height:300px;
-	display: none;
-	background-color: #ffffff;
-	border-radius:5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px
-}
-.myCustomButtonTabContent .myCustomButtonTabC{
-	width:360px;
-	height:400px;
-	display: none;
-	background-color: #ffffff;
-	border-radius:5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px
-}
-.myCustomButtonTabContent .myCustomButtonTabD{
-	width:360px;
-	height:500px;
+	
 	display: none;
 	background-color: #ffffff;
 	border-radius:5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+	padding:10px;
+}
+.myCustomButtonTabContent .myCustomButtonTabC{
+	width:360px;
+
+	display: none;
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding:10px;
+}
+.myCustomButtonTabContent .myCustomButtonTabD{
+	width:360px;
+	
+	display: none;
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding:10px;
 }
 .myCustomButtonTabContent span{
 	display: block;

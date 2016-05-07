@@ -94,7 +94,7 @@
 	word-spacing: -0.15em;
 
 	font-weight: 400;
-	padding-left:50px;
+	padding-left:0px;
 	padding-top:10px;
 }
 
@@ -137,9 +137,9 @@ figure.effect-zoe figcaption > span {
 
 figure.effect-zoe p {
 	position: absolute;
-	bottom: 1.8em;
+	bottom: 3.8em;
 	padding: 0.8em;
-	color: #fff;
+	color: #F16985;
 	text-transform: none;
 	font-size: 80%;
 	opacity: 0;

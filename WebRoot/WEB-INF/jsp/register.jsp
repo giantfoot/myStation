@@ -9,14 +9,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'register.jsp' starting page</title>
+    <title>天天动漫register</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<link rel="Shortcut Icon" href="images/tv.ico" />
+	<meta http-equiv="keywords" content="天天动漫">
+	<meta http-equiv="description" content="天天动漫">
+	<link href="${pageContext.request.contextPath }/images/favicon.ico" rel="shortcut icon">
+	<link rel="Bookmark" href="${pageContext.request.contextPath }/images/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="css/loginStyles.css">
 	<style type="text/css">
 		.login{
@@ -80,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-  <body>
+  <body style="margin:0 auto;width:1366px">
   
   
   	<div style="width:1366px;height:200px;background-color: #EC6690;margin: 0px auto;">
@@ -112,7 +113,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<input type="text" placeholder="验证码" style="width:150px;margin-left:-100px;display:inline-block;" id="code">
 								<img id="code_img" style="width:90px;height:40px;margin-left:10px;position: absolute;"/>
 							</div>
-							<input type="button" value="Register" id="register">
+							<!-- <input type="button" value="Register" id="register"> -->
+							<button type="button" id="register-button" value="register">Register</button>
 						</form>
 					</div>
 					
@@ -202,9 +204,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 					success:function(result){
 				 						if(result == 'success'){
 				 							 window.location.href='${pageContext.request.contextPath }/user/message.action';
-				 							 
-				 						}else{
+				 							 return false;
+				 						}else if(result == 'error'){
 				 							alertMsg("用户注册失败!");
+				 							return false;
 				 						}
 				 					}
 				 				});
@@ -221,7 +224,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 
 		 
 		 	
-		 	$('#register').on('click', function(){
+		 	$('#register-button').on('click', function(){
 		 		var code = $('#code').val();
 		 		var user = {username:$('#username').val(),password:$('#password').val()};
 		 		if(code == '' || code == null){
@@ -241,10 +244,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 			if(result == 'success'){
 					 			
 					 			registerUser();
-					 			
+					 			return false;
 				 			}else if(result == 'error'){
 				 				alertMsg("验证码错误!");
-				 				
+				 				return false;
 				 			}
 				 		}
 				 	});/*ajaxEnd*/
@@ -255,6 +258,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 			
 		 			
 		 		}
+		 		return false;
 		 	});
 		 	
 		 	

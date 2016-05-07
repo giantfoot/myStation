@@ -591,6 +591,76 @@ public class UserExample {
             addCriterion("validateCode not between", value1, value2, "validatecode");
             return (Criteria) this;
         }
+
+        public Criteria andHeaderIsNull() {
+            addCriterion("header is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderIsNotNull() {
+            addCriterion("header is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderEqualTo(String value) {
+            addCriterion("header =", value, "header");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderNotEqualTo(String value) {
+            addCriterion("header <>", value, "header");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderGreaterThan(String value) {
+            addCriterion("header >", value, "header");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderGreaterThanOrEqualTo(String value) {
+            addCriterion("header >=", value, "header");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderLessThan(String value) {
+            addCriterion("header <", value, "header");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderLessThanOrEqualTo(String value) {
+            addCriterion("header <=", value, "header");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderLike(String value) {
+            addCriterion("header like", value, "header");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderNotLike(String value) {
+            addCriterion("header not like", value, "header");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderIn(List<String> values) {
+            addCriterion("header in", values, "header");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderNotIn(List<String> values) {
+            addCriterion("header not in", values, "header");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderBetween(String value1, String value2) {
+            addCriterion("header between", value1, value2, "header");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeaderNotBetween(String value1, String value2) {
+            addCriterion("header not between", value1, value2, "header");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

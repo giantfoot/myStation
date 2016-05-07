@@ -10,4 +10,6 @@ public interface UserMapperCustom {
 	User findUserByEmail(String email);
 
 	void updateStateByPrimaryKey(Integer userid);
+
+	void updateHeader(User user);
 }

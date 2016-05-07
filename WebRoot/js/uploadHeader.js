@@ -30,7 +30,8 @@ $.imageResizer=function(){
             nw=this.image.naturalWidth,
             size=nw>nh?nh:nw;
         
-        size=size>1000?1000:size;
+        /*size=size>1000?1000:size;*/
+        size=size>300?300:size;
         
         var canvas=$('<canvas width="'+size+'" height="'+size+'"></canvas>')[0],
             ctx=canvas.getContext('2d'),
@@ -40,7 +41,7 @@ $.imageResizer=function(){
             w=this.frames.offset.size*scale,
             h=this.frames.offset.size*scale;
         
-        ctx.drawImage(this.image,x,y,w,h,0,0,size,size);
+        ctx.drawImage(this.image,x,y,w,h,0,0,size,size);//-----------------
         var src=canvas.toDataURL();
         this.canvas=canvas;
         this.append(canvas);
@@ -144,7 +145,7 @@ $.imageResizer=function(){
             clearTimeout(time)
             time=setTimeout(function(){
                 setFrames();
-            },1000);
+            },1000);//--------------------------
         };
         
         resizer.setFrames=setFrames;
@@ -216,9 +217,9 @@ $('button.submit').click(function(){
     if(!url||!resizedFile)return;
     var fd=new FormData();
     fd.append('file',resizedFile);
-    $.ajax({
+    /*$.ajax({
         type:'POST',
         url:url,
         data:fd
-    });
+    });*/
 });

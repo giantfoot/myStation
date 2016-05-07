@@ -11,4 +11,6 @@ public interface UserService {
 	public User findUserByEmail(String email);
 	public void processRegister(User user,String email);
 	public void processActivate(String email , String validateCode) throws Exception;
+	public void updateHeader(Integer userid, String headerPath);
+	
 }

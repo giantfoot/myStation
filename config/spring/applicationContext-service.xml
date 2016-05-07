@@ -12,7 +12,8 @@
 		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
-<!-- 商品管理的service -->
+
 	<!-- <context:component-scan base-package="com.zyy.ssm.service.impl"></context:component-scan> -->
 	<bean id="userServiceImpl" class="com.zyy.ssm.service.impl.UserServiceImpl"></bean>
+	<bean id="itemServiceImpl" class="com.zyy.ssm.service.impl.ItemServiceImpl"></bean>
 </beans>

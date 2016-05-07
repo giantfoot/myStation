@@ -9,14 +9,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'login.jsp' starting page</title>
+    <title>天天动漫errorMSG</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<link rel="Shortcut Icon" href="images/tv.ico" />
+	<meta http-equiv="keywords" content="天天动漫">
+	<meta http-equiv="description" content="天天动漫">
+	<link href="${pageContext.request.contextPath }/images/favicon.ico" rel="shortcut icon">
+	<link rel="Bookmark" href="${pageContext.request.contextPath }/images/favicon.ico" />
 	
 	
 	<style type="text/css">
@@ -38,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-  <body>
+  <body style="margin:0 auto;width:1366px;padding:0">
   
  
   	<div style="width:1366px;height:200px;background-color: #EC6690;margin: 0px auto;position:relative">

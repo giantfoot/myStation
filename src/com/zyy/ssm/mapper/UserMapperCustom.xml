@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zyy.ssm.mapper.UserMapperCustom" >
-	<select id="findUserByUsernameAndPassword" parameterType="com.zyy.ssm.po.User" resultType="com.zyy.ssm.po.User">
-		select user.* from user where user.username = #{username} and user.password = #{password}
+<resultMap id="BaseResultMap" type="com.zyy.ssm.po.User" >
+    <id column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="registerTime" property="registertime" jdbcType="DATE" />
+    <result column="validateCode" property="validatecode" jdbcType="VARCHAR" />
+    <result column="header" property="header" jdbcType="VARCHAR" />
+  </resultMap>
+<sql id="Base_Column_List" >
+    userId, username, password, email, state, registerTime, validateCode, header
+</sql>
+	<select id="findUserByUsernameAndPassword" parameterType="com.zyy.ssm.po.User" resultMap="BaseResultMap" >
+		select
+		<include refid="Base_Column_List" />
+		from user where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
 	</select>
-	<select id="findUserByUsername" parameterType="com.zyy.ssm.po.User" resultType="com.zyy.ssm.po.User">
-		select user.* from user where user.username = #{username}
+	<select id="findUserByUsername" parameterType="com.zyy.ssm.po.User" resultMap="BaseResultMap">
+		select  
+		<include refid="Base_Column_List" />
+		from user where username = #{username,jdbcType=VARCHAR}
 	</select>
-	<select id="findUserByEmail" parameterType="String" resultType="com.zyy.ssm.po.User">
-		select user.* from user where user.email = #{eamil}
+	<select id="findUserByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select  
+		<include refid="Base_Column_List" />
+		from user where email = #{value,jdbcType=VARCHAR}
 	</select>
-	<update id="updateStateByPrimaryKey" parameterType="Integer">
-		update user set user.state = 1 where user.userId = #{value}
+	<update id="updateStateByPrimaryKey" parameterType="java.lang.Integer">
+		update user set state = 1 where userId = #{value,jdbcType=INTEGER}
+	</update>
+	<update id="updateHeader" parameterType="com.zyy.ssm.po.User">
+		update user set header = #{header} where userId = #{userid,jdbcType=INTEGER}
 	</update>
 </mapper>

@@ -68,11 +68,11 @@ public class UserServiceImpl implements UserService {
 		user.setValidatecode(MD5Util.encode2hex(email));
 		userMapper.insert(user);
 		StringBuffer sb=new StringBuffer("点击下面链接激活账号，48小时生效，否则重新注册账号，链接只能使用一次，请尽快激活！</br>");
-        sb.append("<a href=\"http://www.ybcome.com/user/activate.action?action=activate&email=");
+        sb.append("<a href=\"http://ttdm.applinzi.com/user/activate.action?action=activate&email=");
         sb.append(email); 
         sb.append("&validateCode="); 
         sb.append(user.getValidatecode());
-        sb.append("\">http://www.ybcome.com/user/activate.action?action=activate&email="); 
+        sb.append("\">http://ttdm.applinzi.com/user/activate.action?action=activate&email="); 
         sb.append(email);
         sb.append("&validateCode=");
         sb.append(user.getValidatecode());

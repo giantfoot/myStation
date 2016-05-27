@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
+   
     <title>天天动漫errorMSG</title>
     
 	<meta http-equiv="pragma" content="no-cache">
@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-  <body style="margin:0 auto;width:1366px;padding:0">
+  <body style="width: 1366px;margin:0 auto;padding:0">
   
  
   	<div style="width:1366px;height:200px;background-color: #EC6690;margin: 0px auto;position:relative">
@@ -66,3 +66,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			</div>
  		</div>
   	</div>
+</body>
+</html>

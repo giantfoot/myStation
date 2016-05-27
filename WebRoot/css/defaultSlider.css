@@ -1,4 +1,4 @@
-@import url(http://fonts.useso.com/css?family=Raleway:200,500,700,800);
+/* @import url(http://fonts.useso.com/css?family=Raleway:200,500,700,800);
 @font-face {
 	font-family: 'icomoon';
 	src:url('../fonts/icomoon.eot?rretjt');
@@ -19,7 +19,7 @@
 	text-transform: none;
 	line-height: 1;
 
-	/* Better Font Rendering =========== */
+	Better Font Rendering ===========
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -27,7 +27,7 @@
 body, html {padding: 0; margin: 0;}
 
 
-/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+
 .clearfix:before,
 .clearfix:after {
 	content: " ";
@@ -47,17 +47,7 @@ a{color: #2fa0ec;text-decoration: none;outline: none;}
 a:hover,a:focus{color:#74777b;}
 
 
-/* Header */
 
-/*nav*/
-
-/* Top Navigation Style */
-
-/* footer */
-
-/****/
-
-/* icomoon */
 .icon-htmleaf-home-outline:before {
 	content: "\e5000";
 }
@@ -86,4 +76,4 @@ a:hover,a:focus{color:#74777b;}
     .htmleaf-header h1 {
         font-size:1.2em;
     }
-}
+ } */

@@ -1,9 +1,15 @@
 package com.zyy.ssm.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
-    private Integer userid;
+public class User implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer userid;
 
     private String username;
 

@@ -2,15 +2,12 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>天天动漫</display-name>
   
-    <session-config>
-	 <session-timeout>30</session-timeout>
-  </session-config>
-  <distributable/>
-  <listener>  
-    <listener-class>  
-       com.zyy.ssm.listener.SAEListener  
-    </listener-class>  
-</listener>
+ <distributable/>
+ <session-config>
+    <session-timeout>30</session-timeout>
+ </session-config>
+  
+
   
   
   <context-param>
@@ -35,6 +32,16 @@
   	<url-pattern>*.action</url-pattern>	
   	
    </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>com.zyy.ssm.controller.ProxyServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/uploadServlet</url-pattern>
+  </servlet-mapping>
   
   <filter>
   	<filter-name>CharacterEncodingFilter</filter-name>

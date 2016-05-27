@@ -1,9 +1,14 @@
 package com.zyy.ssm.po;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-public class UserCustom extends User {
+public class UserCustom extends User implements Serializable{
+	/**
+	 * 
+	 */
+	
 	public Date lastActivateTime;
 	public Date getLastActivateTime() {
 		Calendar cl = Calendar.getInstance();  

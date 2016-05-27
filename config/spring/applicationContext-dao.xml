@@ -17,16 +17,47 @@
 	<context:property-placeholder location="classpath:db.properties" />
 	<!-- 配置数据源 ，dbcp -->
 
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
-		<property name="maxActive" value="30" />
+	<!-- 	<property name="maxActive" value="30" />
 		<property name="maxIdle" value="5" />
-	</bean> -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		 <property name="minIdle" value="2"/> 
+		<property name="maxWait" value="-1" />
+		<property name="initialSize" value="10"/> 
+		<property name="testOnBorrow" value="true"/> 
+		<property name="validationQuery" value="SELECT 1 FROM DUAL"/>  -->
+		
+		
+		
+		<!-- 以下参数是根据SAE情况配置 -->
+
+            <property name="maxWait" value="1000" />
+
+           <property name="initialSize" value="5" />
+
+            <property name="maxActive" value="20" />
+            <property name="maxIdle" value="5" />
+
+            <property name="testWhileIdle" value="true" />
+
+            <property name="timeBetweenEvictionRunsMillis" value="15000" />
+
+            <property name="numTestsPerEvictionRun" value="20" />
+
+            <property name="validationQuery" value="SELECT 1 FROM DUAL" />
+
+            <property name="removeAbandoned" value="true" />
+
+        	<property name="removeAbandonedTimeout" value="180" />
+		
+		
+		
+	</bean>
+	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="${jdbc.driver}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.username}" />
@@ -37,8 +68,12 @@
 		<property name="minPoolSize" value="2"></property>
 		<property name="acquireIncrement" value="3"></property>
 		<property name="initialPoolSize" value="5"></property>
-		<property name="loginTimeout" value="3000"></property>
-	</bean>
+		<property name="maxStatements" value="100"></property>
+		<property name="testConnectionOnCheckout" value="true"></property>
+		
+	
+		<property name="testConnectionOnCheckin" value="true"></property>
+	</bean> -->
 	<!-- sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		
@@ -51,7 +86,9 @@
 		<property name="basePackage" value="com.zyy.ssm.mapper"></property>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
-
+	<bean id="UploadServlet" class="com.zyy.ssm.controller.UploadServlet">
+		
+	</bean>
 
 
 

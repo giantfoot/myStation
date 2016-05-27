@@ -1,4 +1,4 @@
-	 $(function(){
+	/* $(function(){*/
 		 
 				$('.myCustomUserCenter').hover(function(){
 				$('#userHeader').animate({width:'70px',height:'70px'}, 200);
@@ -25,7 +25,7 @@
 
 
 
-
+/*
 		 
 			function alertMsg(msg, mode) { //mode为空，即只有一个确认按钮，mode为1时有确认和取消两个按钮
         msg = msg || '';
@@ -132,7 +132,7 @@
         }
         document.body.appendChild(alertBox);
 
-    }
+    }*/
 		 
 		 
 		 
@@ -149,4 +149,4 @@
 		 	
 		 	
 				
-		 });
+		/* });*/

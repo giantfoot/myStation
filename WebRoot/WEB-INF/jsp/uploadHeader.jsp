@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
+   
     <title>天天动漫</title>
     
 	<meta http-equiv="pragma" content="no-cache">
@@ -16,12 +16,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="天天动漫">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	<link rel="stylesheet" href="css/headerStyle.css" type="text/css" />
 	<link href="${pageContext.request.contextPath }/images/favicon.ico" rel="shortcut icon">
 	<link rel="Bookmark" href="${pageContext.request.contextPath }/images/favicon.ico" />
-	<style type="text/css">
+<!-- 	<style type="text/css">
 		.container{
 		    width: 300px;
 		}
@@ -63,17 +61,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    margin:auto;
 		    display: block;
 		}
-	</style>
+	</style> -->
   </head>
   
   <body >
-	 <form enctype="multipart/form-data" method="post" action="${pageContext.request.contextPath }/user/upload.action">
+	<%--  <form enctype="multipart/form-data" method="post" action="${pageContext.request.contextPath }/user/upload.action">
 	    <input type="file" name="header" />
 		<input class="url" type="url" placeholder="url"/>
 		<div class="container"></div>
 		<button class="submit" type="submit">上传</button>
 	 </form>
 		<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
-		<script src="js/uploadHeader.js"></script>
+		<script src="js/uploadHeader.js"></script> --%>
+		<div class="container">
+		<div class="imageBox">
+			<div class="thumbBox"></div>
+			<div class="spinner" style="display: none">Loading...</div>
+		</div>
+		<div class="action">
+			<!-- <input type="file" id="file" style=" width: 200px">-->
+			<div class="new-contentarea tc">
+				<a href="javascript:void(0)" class="upload-img"> <label for="upload-file">浏览图片</label> </a> <input type="file" class="" name="upload-file" id="upload-file" />
+			</div>
+			<input type="button" id="btnCrop" class="Btnsty_peyton" value="裁切">
+			<input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+">
+			<input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-">
+		</div>
+		<div class="cropped"></div>
+	</div>
+	
+	<center><input type="button" value="上传" onclick="uploadHead()"  class="Btnsty_save"></center><br>
+	<center><a href="http://www.ybcome.com/" style="width:100px" class="Btnsty_save">返回首页</a></center>
+	<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="js/cropbox.js"></script>
+	<script type="text/javascript" src="js/gethead.js"></script>
   </body>
 </html>

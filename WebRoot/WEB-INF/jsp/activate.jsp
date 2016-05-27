@@ -7,6 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <html>
   <head>
+  
     <base href="<%=basePath%>">
     
     <title>天天动漫activate</title>
@@ -18,7 +19,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="天天动漫">
 	<link href="${pageContext.request.contextPath }/images/favicon.ico" rel="shortcut icon">
 	<link rel="Bookmark" href="${pageContext.request.contextPath }/images/favicon.ico" />
-	
+	<link type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="css/myDefault.css"/>
 	<style type="text/css">
 		.login{
 			background-color: #ffffff;
@@ -39,10 +41,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-  <body style="width:1366p;margin:0 auto">
-  
- 
-  	<div style="width:1366px;height:200px;background-color: #EC6690;margin: 0px auto;position:relative">
+  <body style="width:1366px;margin:0 auto">
+
+  	<div style="width:1366px;height:200px;background-color: #EC6690;margin:0px auto;margin-top:-50px">
   		<div style="margin:auto;width:100px;position:relative;top:50px;color:#ffffff;text-align:center"><h2>MSG中心</h2></div>
   	</div>
   	
@@ -62,10 +63,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  				<div style="position: absolute;display: block;margin:100px auto;width:300px;height:100px">
 	 				<c:choose>
 	 					<c:when test="${activateMsg == 'success' }">
-	 						<a href="${pageContext.request.contextPath }/user/login.action">激活成功!请点击前往登录界面</a>
+	 						<h2><a href="${pageContext.request.contextPath }/user/login.action">激活成功!请点击前往登录界面</a></h2>
 	 					</c:when>
 	 					<c:when test="${activateMsg == 'error' }">
-	 						<a href="${pageContext.request.contextPath }/user/toRegister.action">激活失败!请点击重新注册</a>
+	 						<h2><a href="${pageContext.request.contextPath }/user/toRegister.action">激活失败!请点击重新注册${errorMsg }</a></h2>
 	 					</c:when>
 	 					<c:otherwise><h2>注册成功!请前往邮箱激活..............</h2></c:otherwise>
 	 				</c:choose>
@@ -74,6 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			</div>
  		</div>
   	</div>
+  	<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
  	</body>
  
  	</html>

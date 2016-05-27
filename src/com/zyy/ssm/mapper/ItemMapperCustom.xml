@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyy.ssm.mapper.ItemMapperCustom" >
+   <resultMap id="BaseResultMap" type="com.zyy.ssm.po.Item" >
+    <id column="itemId" property="itemid" jdbcType="INTEGER" />
+    <result column="itemName" property="itemname" jdbcType="VARCHAR" />
+    <result column="itemUrl" property="itemurl" jdbcType="VARCHAR" />
+    <result column="itemPassword" property="itempassword" jdbcType="VARCHAR" />
+    <result column="itemImgUrl" property="itemimgurl" jdbcType="VARCHAR" />
+    <result column="itemNum" property="itemnum" jdbcType="INTEGER" />
+    <result column="itemTab" property="itemtab" jdbcType="VARCHAR" />
+    <result column="itemTime" property="itemtime" jdbcType="DATE" />
+    <result column="itemEname" property="itemename" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zyy.ssm.po.Item" extends="BaseResultMap" >
+    <result column="itemDesc" property="itemdesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+ <sql id="Base_Column_List" >
+    itemId, itemName, itemUrl, itemPassword, itemImgUrl, itemNum, itemTab, itemTime, 
+    itemEname
+  </sql>
+  <sql id="Blob_Column_List" >
+    itemDesc
+  </sql>
+<select id="findItemsByLikeName" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+	select
+	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+	from item
+	where itemName like '%${value}%' 
+</select>
+<select id="findItemsByTab" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+	select
+	<include refid="Base_Column_List"/> ,
+	<include refid="Blob_Column_List"/> 
+	from item
+	where itemTab like '%${value}%' 
+</select>
+<select id="findItemsByEname" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+	select
+	<include refid="Base_Column_List"/> ,
+	<include refid="Blob_Column_List"/> 
+	from item
+	where itemEname =#{value} 
+</select>
+</mapper>

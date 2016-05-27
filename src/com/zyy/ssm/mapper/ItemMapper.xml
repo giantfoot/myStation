@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyy.ssm.mapper.ItemMapper" >
+  <resultMap id="BaseResultMap" type="com.zyy.ssm.po.Item" >
+    <id column="itemId" property="itemid" jdbcType="INTEGER" />
+    <result column="itemName" property="itemname" jdbcType="VARCHAR" />
+    <result column="itemUrl" property="itemurl" jdbcType="VARCHAR" />
+    <result column="itemPassword" property="itempassword" jdbcType="VARCHAR" />
+    <result column="itemImgUrl" property="itemimgurl" jdbcType="VARCHAR" />
+    <result column="itemNum" property="itemnum" jdbcType="INTEGER" />
+    <result column="itemTab" property="itemtab" jdbcType="VARCHAR" />
+    <result column="itemTime" property="itemtime" jdbcType="DATE" />
+    <result column="itemEname" property="itemename" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zyy.ssm.po.Item" extends="BaseResultMap" >
+    <result column="itemDesc" property="itemdesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    itemId, itemName, itemUrl, itemPassword, itemImgUrl, itemNum, itemTab, itemTime, 
+    itemEname
+  </sql>
+  <sql id="Blob_Column_List" >
+    itemDesc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zyy.ssm.po.ItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zyy.ssm.po.ItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from item
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from item
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zyy.ssm.po.ItemExample" >
+    delete from item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zyy.ssm.po.Item" >
+    insert into item (itemId, itemName, itemUrl, 
+      itemPassword, itemImgUrl, itemNum, 
+      itemTab, itemTime, itemEname, 
+      itemDesc)
+    values (#{itemid,jdbcType=INTEGER}, #{itemname,jdbcType=VARCHAR}, #{itemurl,jdbcType=VARCHAR}, 
+      #{itempassword,jdbcType=VARCHAR}, #{itemimgurl,jdbcType=VARCHAR}, #{itemnum,jdbcType=INTEGER}, 
+      #{itemtab,jdbcType=VARCHAR}, #{itemtime,jdbcType=DATE}, #{itemename,jdbcType=VARCHAR}, 
+      #{itemdesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zyy.ssm.po.Item" >
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemid != null" >
+        itemId,
+      </if>
+      <if test="itemname != null" >
+        itemName,
+      </if>
+      <if test="itemurl != null" >
+        itemUrl,
+      </if>
+      <if test="itempassword != null" >
+        itemPassword,
+      </if>
+      <if test="itemimgurl != null" >
+        itemImgUrl,
+      </if>
+      <if test="itemnum != null" >
+        itemNum,
+      </if>
+      <if test="itemtab != null" >
+        itemTab,
+      </if>
+      <if test="itemtime != null" >
+        itemTime,
+      </if>
+      <if test="itemename != null" >
+        itemEname,
+      </if>
+      <if test="itemdesc != null" >
+        itemDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemid != null" >
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="itemname != null" >
+        #{itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="itemurl != null" >
+        #{itemurl,jdbcType=VARCHAR},
+      </if>
+      <if test="itempassword != null" >
+        #{itempassword,jdbcType=VARCHAR},
+      </if>
+      <if test="itemimgurl != null" >
+        #{itemimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="itemnum != null" >
+        #{itemnum,jdbcType=INTEGER},
+      </if>
+      <if test="itemtab != null" >
+        #{itemtab,jdbcType=VARCHAR},
+      </if>
+      <if test="itemtime != null" >
+        #{itemtime,jdbcType=DATE},
+      </if>
+      <if test="itemename != null" >
+        #{itemename,jdbcType=VARCHAR},
+      </if>
+      <if test="itemdesc != null" >
+        #{itemdesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zyy.ssm.po.ItemExample" resultType="java.lang.Integer" >
+    select count(*) from item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update item
+    <set >
+      <if test="record.itemid != null" >
+        itemId = #{record.itemid,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemname != null" >
+        itemName = #{record.itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemurl != null" >
+        itemUrl = #{record.itemurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itempassword != null" >
+        itemPassword = #{record.itempassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemimgurl != null" >
+        itemImgUrl = #{record.itemimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemnum != null" >
+        itemNum = #{record.itemnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemtab != null" >
+        itemTab = #{record.itemtab,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemtime != null" >
+        itemTime = #{record.itemtime,jdbcType=DATE},
+      </if>
+      <if test="record.itemename != null" >
+        itemEname = #{record.itemename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemdesc != null" >
+        itemDesc = #{record.itemdesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update item
+    set itemId = #{record.itemid,jdbcType=INTEGER},
+      itemName = #{record.itemname,jdbcType=VARCHAR},
+      itemUrl = #{record.itemurl,jdbcType=VARCHAR},
+      itemPassword = #{record.itempassword,jdbcType=VARCHAR},
+      itemImgUrl = #{record.itemimgurl,jdbcType=VARCHAR},
+      itemNum = #{record.itemnum,jdbcType=INTEGER},
+      itemTab = #{record.itemtab,jdbcType=VARCHAR},
+      itemTime = #{record.itemtime,jdbcType=DATE},
+      itemEname = #{record.itemename,jdbcType=VARCHAR},
+      itemDesc = #{record.itemdesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update item
+    set itemId = #{record.itemid,jdbcType=INTEGER},
+      itemName = #{record.itemname,jdbcType=VARCHAR},
+      itemUrl = #{record.itemurl,jdbcType=VARCHAR},
+      itemPassword = #{record.itempassword,jdbcType=VARCHAR},
+      itemImgUrl = #{record.itemimgurl,jdbcType=VARCHAR},
+      itemNum = #{record.itemnum,jdbcType=INTEGER},
+      itemTab = #{record.itemtab,jdbcType=VARCHAR},
+      itemTime = #{record.itemtime,jdbcType=DATE},
+      itemEname = #{record.itemename,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zyy.ssm.po.Item" >
+    update item
+    <set >
+      <if test="itemname != null" >
+        itemName = #{itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="itemurl != null" >
+        itemUrl = #{itemurl,jdbcType=VARCHAR},
+      </if>
+      <if test="itempassword != null" >
+        itemPassword = #{itempassword,jdbcType=VARCHAR},
+      </if>
+      <if test="itemimgurl != null" >
+        itemImgUrl = #{itemimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="itemnum != null" >
+        itemNum = #{itemnum,jdbcType=INTEGER},
+      </if>
+      <if test="itemtab != null" >
+        itemTab = #{itemtab,jdbcType=VARCHAR},
+      </if>
+      <if test="itemtime != null" >
+        itemTime = #{itemtime,jdbcType=DATE},
+      </if>
+      <if test="itemename != null" >
+        itemEname = #{itemename,jdbcType=VARCHAR},
+      </if>
+      <if test="itemdesc != null" >
+        itemDesc = #{itemdesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zyy.ssm.po.Item" >
+    update item
+    set itemName = #{itemname,jdbcType=VARCHAR},
+      itemUrl = #{itemurl,jdbcType=VARCHAR},
+      itemPassword = #{itempassword,jdbcType=VARCHAR},
+      itemImgUrl = #{itemimgurl,jdbcType=VARCHAR},
+      itemNum = #{itemnum,jdbcType=INTEGER},
+      itemTab = #{itemtab,jdbcType=VARCHAR},
+      itemTime = #{itemtime,jdbcType=DATE},
+      itemEname = #{itemename,jdbcType=VARCHAR},
+      itemDesc = #{itemdesc,jdbcType=LONGVARCHAR}
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zyy.ssm.po.Item" >
+    update item
+    set itemName = #{itemname,jdbcType=VARCHAR},
+      itemUrl = #{itemurl,jdbcType=VARCHAR},
+      itemPassword = #{itempassword,jdbcType=VARCHAR},
+      itemImgUrl = #{itemimgurl,jdbcType=VARCHAR},
+      itemNum = #{itemnum,jdbcType=INTEGER},
+      itemTab = #{itemtab,jdbcType=VARCHAR},
+      itemTime = #{itemtime,jdbcType=DATE},
+      itemEname = #{itemename,jdbcType=VARCHAR}
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </update>
+</mapper>

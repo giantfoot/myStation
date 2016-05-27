@@ -1,6 +1,7 @@
 package com.zyy.ssm.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 
@@ -12,14 +13,21 @@ import java.io.IOException;
 
 
 
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
+import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.JspFactory;
+import javax.servlet.jsp.PageContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,12 +55,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import uploadUtil.UploadUtil;
+
 import com.zyy.ssm.exception.CustomException;
 import com.zyy.ssm.po.Item;
 import com.zyy.ssm.po.User;
 import com.zyy.ssm.service.ItemService;
 import com.zyy.ssm.service.UserService;
 
+import javax.servlet.jsp.JspFactory;
+import javax.servlet.jsp.PageContext;
+
+import sun.misc.BASE64Decoder;
 
 
 
@@ -67,6 +81,8 @@ import com.zyy.ssm.service.UserService;
 
 
 import com.zyy.ssm.service.impl.ItemServiceImpl;
+
+
 
 import verifycodeutil.VerifyCodeUtils;
 
@@ -143,7 +159,7 @@ public class LoginAndRegisterController {
 		
 			try {
 				
-				response.sendRedirect(request.getContextPath()+"/index.jsp");
+				response.sendRedirect("http://www.ybcome.com");
 				
 				
 			} catch (Exception e) {
@@ -221,6 +237,7 @@ public class LoginAndRegisterController {
 	                mav.setViewName("activate");
 	            } catch (Exception e) {
 	            	mav.addObject("activateMsg", "error");
+	            	mav.addObject("errorMsg", e.getMessage());
 	                mav.setViewName("activate");
 	            }
 
@@ -236,8 +253,8 @@ public class LoginAndRegisterController {
 		return "uploadHeader";
 	}
 	@RequestMapping("/upload")
-	public void upload(MultipartFile header,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IllegalStateException, IOException{
-		if(header != null && header.getOriginalFilename() != null && header.getOriginalFilename().length()>0){
+	public void upload(@RequestParam String filPath,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IllegalStateException, IOException{
+		/*if(header != null && header.getOriginalFilename() != null && header.getOriginalFilename().length()>0){
 			String originalFilename = header.getOriginalFilename();
 			String uuid = StringUtils.replace(UUID.randomUUID().toString(), "-", "");
 			String fileName = uuid + "_" + originalFilename;
@@ -246,7 +263,7 @@ public class LoginAndRegisterController {
 			String dir1 = Integer.toHexString(hashCode & 0xF);
 			String dir2 = Integer.toHexString(hashCode>>>4 & 0xf);
 			savePath = savePath + "/" + dir1 + "/" + dir2;
-			String headerPath = "images/userHeader/" + dir1 + "/" + dir2 + "/" + fileName;
+			String headerPath = "/images/userHeader/" + dir1 + "/" + dir2 + "/" + fileName;
 			new File(savePath).mkdirs();
 			File file = new File(savePath,fileName);
 			header.transferTo(file);
@@ -256,7 +273,13 @@ public class LoginAndRegisterController {
 			userServiceImpl.updateHeader(user.getUserid(),headerPath);
 			response.sendRedirect(request.getContextPath()+"/index.jsp");
 			
-		}
+		}*/
+	/*	String header = request.getParameter("header");
+		User user = (User) session.getAttribute("user");
+		userServiceImpl.updateHeader(user.getUserid(),header);*/
+		
+		
+		
 	}
 	@RequestMapping("/search")
 	public String search(@RequestParam String searchName,HttpServletRequest request){

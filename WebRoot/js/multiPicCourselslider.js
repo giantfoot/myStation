@@ -121,6 +121,138 @@ $.fn.prepare_sliderMyCustomSpan4 = function(){
 	
 }
 
+
+//555555555
+$.fn.prepare_sliderMyCustomSpan5 = function(){	
+	var x_pos = 0;
+	var li_items_n = 0;	
+	var right_clicks = 0;		
+	var left_clicks = 0;					
+	var li_col = $(".myCustomSpan5 #slider_list > li");		
+	var li_width = li_col.outerWidth(true);		
+	var viewWindow = Math.round($('.myCustomSpan5 .block-slider').width()/li_width);
+	
+	li_col.each(function(index){			
+		x_pos += $(this).outerWidth(true);
+		li_items_n++;								
+	})	
+	
+	right_clicks = li_items_n - viewWindow;
+	total_clicks = li_items_n - viewWindow;		
+	
+	$('.myCustomSpan5 #slider_list').css('position','relative');
+	$('.myCustomSpan5 #slider_list').css('left','0px');
+	$('.myCustomSpan5 #slider_list').css('width', x_pos+'px');
+	
+	var is_playing = false;
+	var completed = function() { is_playing = false; }
+	
+	$('.myCustomSpan5 #left_but').click( function(){									
+		cur_offset = $('.myCustomSpan5 #slider_list').position().left;
+		if (!is_playing){						
+			if (left_clicks > 0) {
+				is_playing = true; $('.myCustomSpan5 #slider_list').animate({'left': cur_offset + li_width + 'px'}, 700, "linear", completed); 
+				right_clicks++; 
+				left_clicks--;
+			} 
+			else {
+				is_playing = true;
+				$('.myCustomSpan5 #slider_list').animate({'left':    -li_width*total_clicks	+ 'px'}, 700, "linear", completed); 
+				right_clicks = 0;
+				left_clicks = total_clicks;
+			}
+		}
+	});		
+	
+	$('.myCustomSpan5 #right_but').click( function(){
+		if (!is_playing){			
+			cur_offset = $('.myCustomSpan5 #slider_list').position().left;			
+			if (right_clicks > 0) {
+				is_playing = true; 
+				$('.myCustomSpan5 #slider_list').animate({'left': cur_offset - li_width + 'px'},700, "linear", completed );
+				right_clicks--; left_clicks++; 
+			} 
+			else { 
+				is_playing = true; $('.myCustomSpan5 #slider_list').animate({'left':    0	+ 'px'},700, "linear", completed ); 
+				left_clicks = 0;
+				right_clicks = total_clicks;
+			}			 
+		}
+	});	
+	
+}
+
+//66666666666666
+$.fn.prepare_sliderMyCustomSpan6 = function(){	
+	var x_pos = 0;
+	var li_items_n = 0;	
+	var right_clicks = 0;		
+	var left_clicks = 0;					
+	var li_col = $(".myCustomSpan6 #slider_list > li");		
+	var li_width = li_col.outerWidth(true);		
+	var viewWindow = Math.round($('.myCustomSpan6 .block-slider').width()/li_width);
+	
+	li_col.each(function(index){			
+		x_pos += $(this).outerWidth(true);
+		li_items_n++;								
+	})	
+	
+	right_clicks = li_items_n - viewWindow;
+	total_clicks = li_items_n - viewWindow;		
+	
+	$('.myCustomSpan6 #slider_list').css('position','relative');
+	$('.myCustomSpan6 #slider_list').css('left','0px');
+	$('.myCustomSpan6 #slider_list').css('width', x_pos+'px');
+	
+	var is_playing = false;
+	var completed = function() { is_playing = false; }
+	
+	$('.myCustomSpan6 #left_but').click( function(){									
+		cur_offset = $('.myCustomSpan6 #slider_list').position().left;
+		if (!is_playing){						
+			if (left_clicks > 0) {
+				is_playing = true; $('.myCustomSpan6 #slider_list').animate({'left': cur_offset + li_width + 'px'}, 700, "linear", completed); 
+				right_clicks++; 
+				left_clicks--;
+			} 
+			else {
+				is_playing = true;
+				$('.myCustomSpan6 #slider_list').animate({'left':    -li_width*total_clicks	+ 'px'}, 700, "linear", completed); 
+				right_clicks = 0;
+				left_clicks = total_clicks;
+			}
+		}
+	});		
+	
+	$('.myCustomSpan6 #right_but').click( function(){
+		if (!is_playing){			
+			cur_offset = $('.myCustomSpan6 #slider_list').position().left;			
+			if (right_clicks > 0) {
+				is_playing = true; 
+				$('.myCustomSpan6 #slider_list').animate({'left': cur_offset - li_width + 'px'},700, "linear", completed );
+				right_clicks--; left_clicks++; 
+			} 
+			else { 
+				is_playing = true; $('.myCustomSpan6 #slider_list').animate({'left':    0	+ 'px'},700, "linear", completed ); 
+				left_clicks = 0;
+				right_clicks = total_clicks;
+			}			 
+		}
+	});	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
 $.fn.over = function(){						
 	$(this).hover(
 	   function () {
@@ -131,4 +263,18 @@ $.fn.over = function(){
 	   }
 	 );		
    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });

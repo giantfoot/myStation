@@ -1,10 +1,15 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
   	
-  	<%@ include file="/common/header.jsp"%>
+  	
+  	
     <base href="<%=basePath%>">
     
     <title>天天动漫</title>
@@ -17,7 +22,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<meta name="baidu-site-verification" content="57wyrqepHE" />
+	<base target="_blank">
+	<meta name="baidu-site-verification" content="1brhXA7ncw" />
+	<link type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
+	
 	<link rel="stylesheet" type="text/css" href="css/myDefault.css"/>
 	
 	<link rel="Shortcut Icon" href="tvblog.ico" />
@@ -25,9 +33,9 @@
 	
 	
 	
-	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="css/defaultSlider.css" />
-	<link rel="stylesheet" href="css/jquery.hiSlider.min.css" />
+<!-- 	<link rel="stylesheet" type="text/css" href="css/normalize.css" /> -->
+	<!-- <link rel="stylesheet" type="text/css" href="css/defaultSlider.css" /> -->
+	<!-- <link rel="stylesheet" href="css/jquery.hiSlider.min.css" /> -->
 	
 	<link rel="stylesheet" type="text/css" href="css/normalizePicShadow.css" />
 	<link rel="stylesheet" type="text/css" href="css/componentPicShadow.css" />
@@ -110,54 +118,46 @@
 		.footerMsg a:hover{
 			color:#fff;
 		}
+		
+		
+		.smallImgItem{
+		
+			padding:0px;
+			width:220px;
+			padding:0px;
+			height:144px;
+			margin-bottom:10px;
+			border-radius:5px;
+		}
+		.smallImgItem:hover{
+			border:1px solid #aaa;
+			box-shadow:0 0 20px rgba(92,92,92,0.4);
+			-webkit-box-shadow:0 0 20px rgba(92,92,92,0.4);
+			-moz-box-shadow:0 0 20px rgba(92,92,92,0.4);
+		}
 	</style>
-	
 	<style type="text/css">
-    /* Custom Styles */
-    .myCustomAffix ul.nav-tabs{
-        width: 50px;
-        margin-top: 20px;
-        border-radius: 4px;
-        border: 1px solid #ddd;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
-    }
-    .myCustomAffix ul.nav-tabs li{
-        margin: 0;
-        border-top: 1px solid #ddd;
-    }
-    .myCustomAffix ul.nav-tabs li:first-child{
-        border-top: none;
-    }
-    .myCustomAffix ul.nav-tabs li a{
-        margin: 0;
-        padding: 8px 16px;
-        border-radius: 0;
-    }
-    .myCustomAffix ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
-        color: #fff;
-        background: #0088cc;
-        border: 1px solid #0088cc;
-    }
-    .myCustomAffix ul.nav-tabs li:first-child a{
-        border-radius: 4px 4px 0 0;
-    }
-    .myCustomAffix ul.nav-tabs li:last-child a{
-        border-radius: 0 0 4px 4px;
-    }
-    .myCustomAffix ul.nav-tabs.affix{
-        top: 265px; /* Set the top position of pinned element */
-        
-    }
-</style>
+		.hiSlider-pages,.hiSlider-title{position:absolute;z-index:3}
+		.hiSlider-btn-prev,.hiSlider-btn-next{position:absolute;z-index:5;top:50%;height:30px;width:30px;background:url(images/hislider-arrow.png) no-repeat;margin-top:-15px;text-indent:-200px;overflow:hidden;opacity:.2;filter:alpha(opacity:20)}
+		.hiSlider-btn-prev{left:10px}
+		.hiSlider-btn-next{right:10px;background-position:-30px 0}
+		.hiSlider-btn-prev:hover,.hiSlider-btn-next:hover{opacity:1;filter:alpha(opacity:100)}
+		.hiSlider-title{bottom:0;width:100%;padding:6px 0;color:#fff;text-indent:10px;background:rgba(0,0,0,.6);z-index:2;font:14px/2 "Microsoft YaHei",Arial,Tahoma}
+		.hiSlider-pages{bottom:10px;right:10px;text-align:right}
+		.hiSlider-pages a{height:12px;width:12px;margin:0 6px;display:inline-block;overflow:hidden;text-indent:-100px;font-size:0;border-radius:50%;background:#ddd}
+		.hiSlider-pages a.active{background:#5472BF}
+	</style>
 	
 	
 	
   </head>
   
-  <body style="width: 1366px;margin:0px auto">
+  <body style="width:1366px;margin:0px auto;">
+
+  	
+
  
-  	
-  	
+
   	
   	
   	
@@ -166,7 +166,7 @@
 <!-- 2 --><div class="myNav">
 	 		<a href="#" style="padding:3px 0px;">
 		 		
-		 			<img alt="主页" src="images/tv.ico" style="position:relative;top:5px;
+		 			<img title="主页" src="images/tv.ico" style="position:relative;top:5px;
 	width:30px;"/>
 		 		
 	 		</a>
@@ -184,7 +184,8 @@
 			</a>
 			<c:choose>
 			<c:when test="${sessionScope.user != null }">
-			<c:if test="${sessionScope.user != null }">
+			
+			
 			
 			<div class="myCustomUserCenter">
 				<c:choose>
@@ -240,7 +241,7 @@
 					</ul>
 				</div>
 			</div>
-			</c:if>
+			
 			</c:when>
 			<c:otherwise>
 				<div class="myCustomUserCenter">
@@ -268,7 +269,7 @@
 	 	</div>
 	         
 	 	
-	 	
+	 	<!--  -->
 	 	
 	 	
 	 	
@@ -278,7 +279,9 @@
 	 	
 	 	
 	 	       <!--       mynavEnd     -->
- 		<div class="topImg"></div>
+ 		
+ 			<div class="topImg"></div>
+ 		
  		
  		
  		
@@ -289,7 +292,7 @@
  	
 	 	
 	 	<nav class="navbar navbar-inverse" role="navigation" style="height:53px;width:1366px;
-	align:center;border-radius:0px;">
+	align:center;border-radius:0px;margin:0px auto;align:center">
 		 	<div class="navbar-header" style="position: absolute;left:100px">
 		      <a class="navbar-brand" href="${pageContext.request.contextPath }/user/navSubject.action?itemtab=syxf">四月新番</a>
 		    </div>
@@ -323,15 +326,9 @@
 			  </nav>
 			  
 			  
+		  
 			  
-			  
-	<script type="text/javascript">
-		$(function(){
-			$('#searchIcon').on('click', function(){
-				$('#searchForm').submit();
-			})
-		});
-	</script>
+	
 			  
 			  
 			  
@@ -339,8 +336,7 @@
 			  
 			  
 			  
-			  
-			  
+	<div style="width:1366px;margin:0px auto;background-color:#F4F5F7;">
 	 	
  	
 	 	<div class="myContainer">
@@ -356,12 +352,12 @@
 				 	
 						    <ul class="hiSlider hiSlider1">
 						        <li data-title="命运石之门" class="hiSlider-item">
-						        <a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszm"><img src="images/pic1/命运石之门.jpg" class="img-rounded"></a>
+						        <a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszm"><img title="命运石之门" src="images/pic1/命运石之门.jpg" class="img-rounded"></a>
 								</li>
-						        <li data-title="希德尼娅的骑士" class="hiSlider-item"><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqs"><img src="images/pic1/希德尼娅的骑士.jpg" class="img-rounded"></a></li>
-						        <li data-title="亚人" class="hiSlider-item"><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yr"><img src="images/pic1/亚人2.jpg" class="img-rounded"></a></li>
-						        <li data-title="野良神" class="hiSlider-item"><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ylsdyj"><img src="images/pic1/野良神.jpg" class="img-rounded"></a></li>
-						        <li data-title="rwby" class="hiSlider-item"><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=rwby"><img src="images/pic1/rwby.jpg" class="img-rounded"></a></li>
+						        <li data-title="希德尼娅的骑士" class="hiSlider-item"><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqs"><img title="希德尼娅的骑士" src="images/pic1/希德尼娅的骑士.jpg" class="img-rounded"></a></li>
+						        <li data-title="亚人" class="hiSlider-item"><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yr"><img title="亚人" src="images/pic1/亚人2.jpg" class="img-rounded"></a></li>
+						        <li data-title="野良神" class="hiSlider-item"><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ylsdyj"><img  title="野良神" src="images/pic1/野良神.jpg" class="img-rounded"></a></li>
+						        <li data-title="rwby" class="hiSlider-item"><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=rwby"><img  title="rwby" src="images/pic1/rwby.jpg" class="img-rounded"></a></li>
 						    </ul>
 					
 				</div><!-- myCarouselEnd -->
@@ -372,12 +368,16 @@
 				
 				
 				<div class="smallImg">
-					<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=tjcdkbnr" class="thumbnail" style="width:220px;padding:1px;height:146px;margin:5px;">
-						<img src="images/pic1/铁甲城的卡巴内瑞.jpg" style="width:218px;height:144px;border-radius:5px;">
-					</a>
-					<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=wdyxxy" class="thumbnail" style="width:220px;padding:1px;height:146px;margin:5px;">
-						<img src="images/pic1/我的英雄学院.jpg" style="width:218px;height:144px;border-radius:5px;">
-					</a>
+					<div class="smallImgItem">
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=tjcdkbnr"  class="thumbnail">
+							<img title="铁甲城的卡巴内瑞" src="images/pic1/铁甲城的卡巴内瑞.jpg" style="width:218px;height:138px;border-radius:5px;">
+						</a>
+					</div>
+					<div class="smallImgItem">
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=wdyxxy" class="thumbnail">
+							<img  title="我的英雄学院" src="images/pic1/我的英雄学院.jpg" style="width:218px;height:138px;border-radius:5px;">
+						</a>
+					</div>
 				</div>
 				
 				
@@ -485,11 +485,11 @@
 				   </div>
 				</div><!-- tabContentEnd -->
 				
-				<div style="width:100%;border:1px solid #666;border-radius:5px;margin-top:50px">
+				<div style="width:100%;margin-top:50px">
 					<form class="form-inline" role="form">
 					  <div class="form-group">
-					    <input  id="bdcsMain" type="text" class="form-control" style="width:270px;margin-right:29px" placeholder="站内搜索">
-					    <button type="submit" class="btn btn-danger">搜索</button>
+					    <input  id="bdcsMain" type="text" class="form-control" style="width:270px;margin-right:15px;display:inline-block;" placeholder="站内搜索">
+					    <button type="submit" style="display:inline-block;" class="btn btn-danger">搜索</button>
 					  </div>
 					 </form>
 					
@@ -554,7 +554,7 @@
       </div>
       <div id="collapseThree" class="panel-collapse collapse">
          <div class="panel-body">
-        	 网站刚刚建立,可能显得很稚嫩
+        	 网站刚刚建立,可能显得很simple
       	 	 维护一个网站真的好麻烦
          </div>
       </div>
@@ -580,7 +580,9 @@
 				
 				
 				<!-- collapseEnd -->
-				<div style="margin-top:50px;margin-bottom: 0px;">
+				<div style="margin-top:50px;margin-bottom: 0px;box-shadow:0 0 10px rgba(92,92,92,0.4);
+	-webkit-box-shadow:0 0 10px rgba(92,92,92,0.4);
+	-moz-box-shadow:0 0 10px rgba(92,92,92,0.4);">
 					<div style="width:360px;height:33px;">
 						<button id="myCustomButtonTab1" type="button" class="btn btn-default" style="color:#ffffff;background-color: #DBA939;margin-left: 6px;margin-right: 3px">站长推荐</button>
 						<button id="myCustomButtonTab2" type="button" class="btn btn-default" style="color:#ffffff;background-color: #CA3D40;margin-left: 0px;margin-right: 3px">热血经典</button>
@@ -662,7 +664,22 @@
 					</div>
 				
 				</div>
-				
+				<!-- 多说评论框 start -->
+	<div class="ds-thread" style="width:100%;border:1px solid #ddd;position:relative;margin:30px auto;padding:10px" data-thread-key="contentFrame" data-title="contentFrame" data-url="请替换成文章的网址"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ttdmapplinzi"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+	<!-- 多说公共JS代码 end -->
 				</div> <!-- myTabsEnd -->
 			
 		
@@ -698,11 +715,11 @@
 				   	 
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/从零开始的异世界生活.jpg" alt="从零开始的异世界生活"/>
+							<img src="images/pic1/从零开始的异世界生活.jpg" title="从零开始的异世界生活"/>
 							<figcaption>
 								<h2>从零开始的异世界生活</h2>
-								<p>把人从死亡线上拉回来的超能力</p>
-								<a href="${pageContext.request.contextPath }/user/contentFrame.action">View more</a>
+								<!-- <p>把人从死亡线上拉回来的超能力</p> -->
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=clksdysjsh">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
@@ -717,27 +734,27 @@
 				   	 
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/当女孩遇到熊.jpg" alt="当女孩遇到熊"/>
+							<img src="images/pic1/当女孩遇到熊.jpg" title="当女孩遇到熊"/>
 							<figcaption>
 								<h2>当女孩遇到熊</h2>
 								<p></p>
-								<a href="${pageContext.request.contextPath }/user/contentFrame.action">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=dnhydx">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
-						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=dnhydx"><h5>当女孩遇到熊</h5></a>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=dnhydx">当女孩遇到熊</a>
 					  
 				     </div>
 				     <!-- 图片单元 --> 
-				    <div onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=mbdlhp'"  style="width:240px;position: absolute;left:520px;top:60px;display: inline-block;">
+				    <div onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=mbdlhp'"  style="width:240px;position: absolute;left:510px;top:60px;display: inline-block;">
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/面包带来和平.jpg" alt="面包带来和平"/>
+							<img src="images/pic1/面包带来和平.jpg" title="面包带来和平"/>
 							<figcaption>
 								<h2>面包带来和平</h2>
 								<p></p>
-								<a href="${pageContext.request.contextPath }/user/contentFrame.action">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=mbdlhp">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
@@ -750,11 +767,11 @@
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/12岁.jpg" alt="12岁"/>
+							<img src="images/pic1/12岁.jpg" title="12岁"/>
 							<figcaption>
 								<h2>12岁</h2>
 								<p></p>
-								<a href="${pageContext.request.contextPath }/user/contentFrame.action">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=12s">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
@@ -775,45 +792,45 @@
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/我们这一家.jpg" alt="我们这一家"/>
+							<img src="images/pic1/我们这一家.jpg" title="我们这一家"/>
 							<figcaption>
 								<h2>我们这一家</h2>
 								<p></p>
-								<a href="${pageContext.request.contextPath }/user/contentFrame.action">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=wmzyj">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
-						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=wmzyj"><h5>我们这一家</h5></a>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=wmzyj">我们这一家</a>
 					
 				     </div>
 				       <div  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=jokergame'" style="width:240px;position: absolute;left:260px;top:60px;display: inline-block;">
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/jokergame.jpg" alt="JOKER　GAME"/>
+							<img src="images/pic1/jokergame.jpg" title="JOKER　GAME"/>
 							<figcaption>
 								<h2>JOKER　GAME</h2>
 								<p></p>
-								<a href="${pageContext.request.contextPath }/user/contentFrame.action">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=jokergame">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
-						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=jokergame"><h5>JOKER　ＧＡＭＥ</h5></a>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=jokergame">JOKER　ＧＡＭＥ</a>
 					
 				     </div>
-				       <div  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=bwzzj'" style="width:240px;position: absolute;left:520px;top:60px;display: inline-block;">
+				       <div  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=bwzzj'" style="width:240px;position: absolute;left:510px;top:60px;display: inline-block;">
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/百武装战纪.jpg" alt="百武装战纪"/>
+							<img src="images/pic1/百武装战纪.jpg" title="百武装战纪"/>
 							<figcaption>
 								<h2>百武装战纪</h2>
 								<p></p>
-								<a href="${pageContext.request.contextPath }/user/contentFrame.action">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=bwzzj">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
-						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=bwzzj"><h5>百武装战纪</h5></a>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=bwzzj">百武装战纪</a>
 					
 				     </div>
 				     
@@ -834,30 +851,30 @@
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/银魂第三季.jpg" alt="银魂第三季"/>
+							<img src="images/pic1/银魂第三季.jpg" title="银魂第三季"/>
 							<figcaption>
 								<h2>银魂     第三季</h2>
 								<p></p>
-								<a href="#">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yydsj">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
-						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yh"><h5>银魂</h5></a>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yydsj">银魂</a>
 					
 				     </div>
 				      <div onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=zdzh'"  style="width:240px;position: absolute;left:260px;top:60px;display: inline-block;">
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/战斗之魂.jpg" alt="战斗之魂"/>
+							<img src="images/pic1/战斗之魂.jpg" title="战斗之魂"/>
 							<figcaption>
 								<h2>战斗之魂     第八季</h2>
 								<p></p>
-								<a href="#">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=zdzh">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
-						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=zdzh"><h5>战斗之魂</h5></a>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=zdzh">战斗之魂</a>
 					
 				     </div>
 				     
@@ -870,15 +887,15 @@
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/文豪野犬.jpg" alt="文豪野犬"/>
+							<img src="images/pic1/文豪野犬.jpg" title="文豪野犬"/>
 							<figcaption>
 								<h2>文豪野犬</h2>
 								<p></p>
-								<a href="#">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=whyq">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
-						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=whyq"><h5>文豪野犬</h5></a>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=whyq">文豪野犬</a>
 					
 				     </div>
 				   </div>
@@ -887,30 +904,30 @@
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/铁甲城的卡巴内瑞2.jpg" alt="铁甲城的卡巴内瑞"/>
+							<img src="images/pic1/铁甲城的卡巴内瑞2.jpg" title="铁甲城的卡巴内瑞"/>
 							<figcaption>
 								<h2>铁甲城的卡巴内瑞</h2>
 								<p></p>
-								<a href="#">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=tjcdkbnr">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
-						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=tjcdkbny"><h5>铁甲城的卡巴内瑞</h5></a>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=tjcdkbnr">铁甲城的卡巴内瑞</a>
 					
 				     </div>
 				     <div onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=mj'"  style="width:240px;position: absolute;left:260px;top:60px;display: inline-block;">
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/迷家.jpg" alt="迷家"/>
+							<img src="images/pic1/迷家.jpg" title="迷家"/>
 							<figcaption>
 								<h2>迷家</h2>
 								<p></p>
-								<a href="#">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=mj">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
-						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=mj"><h5>迷家</h5></a>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=mj">迷家</a>
 					
 				     </div>
 				   </div>
@@ -919,11 +936,11 @@
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/亚人4.jpg" alt="亚人"/>
+							<img src="images/pic1/亚人4.jpg" title="亚人"/>
 							<figcaption>
 								<h2>亚人</h2>
 								<p></p>
-								<a href="#">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yr">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
@@ -934,26 +951,26 @@
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/潮与虎.jpg" alt="潮与虎"/>
+							<img src="images/pic1/潮与虎.jpg" title="潮与虎"/>
 							<figcaption>
 								<h2>潮与虎   第二季</h2>
 								<p></p>
-								<a href="#">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=cyh">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
 						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=cyh">潮与虎</a>
 					
 				     </div>
-				      <div onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=xzds'"  style="width:240px;position: absolute;left:520px;top:60px;display: inline-block;">
+				      <div onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=xzds'"  style="width:240px;position: absolute;left:510px;top:60px;display: inline-block;">
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/学战都市.jpg" alt="学战都市"/>
+							<img src="images/pic1/学战都市.jpg" title="学战都市"/>
 							<figcaption>
 								<h2>学战都市   第二季</h2>
 								<p></p>
-								<a href="#">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xzds">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
@@ -966,15 +983,60 @@
 				   	  
 						<div class="grid">
 						<figure class="effect-zoe">
-							<img src="images/pic1/超时空要塞.jpg" alt="超时空要塞"/>
+							<img src="images/pic1/超时空要塞.jpg" title="超时空要塞"/>
 							<figcaption>
 								<h2>超时空要塞</h2>
 								<p></p>
-								<a href="#">View more</a>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=cskys">View more</a>
 							</figcaption>			
 						</figure>
 						</div>
 						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=cskys">超时空要塞</a>
+					
+				     </div>
+				      <div onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=fxdmn'"  style="width:240px;position: absolute;left:260px;height:150px;top:60px;display: inline-block;">
+				   	  
+						<div class="grid">
+						<figure class="effect-zoe">
+							<img src="images/pic1/飞翔的魔女.jpg" title="飞翔的魔女" style="width:240px;height:150px"/>
+							<figcaption>
+								<h2>飞翔的魔女</h2>
+								<p></p>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=fxdmn">View more</a>
+							</figcaption>			
+						</figure>
+						</div>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=fxdmn">飞翔的魔女</a>
+					
+				     </div>
+				      <div onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=wdyxxy'"  style="width:240px;position: absolute;left:510px;top:60px;display: inline-block;">
+				   	  
+						<div class="grid">
+						<figure class="effect-zoe">
+							<img src="images/pic1/我的英雄学院.jpg" title="我的英雄学院"  style="width:240px;height:150px"/>
+							<figcaption>
+								<h2>我的英雄学院</h2>
+								<p></p>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=wdyxxy">我的英雄学院</a>
+							</figcaption>			
+						</figure>
+						</div>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=wdyxxy">我的英雄学院</a>
+					
+				     </div>
+				      <div onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=mbdlhp'"  style="width:240px;position: absolute;left:10px;top:250px;display: inline-block;">
+				   	  
+						<div class="grid">
+						<figure class="effect-zoe">
+							<img src="images/pic1/面包带来和平.jpg" title="面包带来和平"/>
+							<figcaption>
+								<h2>面包带来和平</h2>
+								<p></p>
+								<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=mbdlhp">面包带来和平</a>
+							</figcaption>			
+						</figure>
+						</div>
+						<a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=mbdlhp">面包带来和平</a>
 					
 				     </div>
 				   </div>
@@ -1018,9 +1080,9 @@
 				<DIV class="block-slider">
 					<DIV class="anythingSlider">
 						<UL id="slider_list" class="products-grid">
-							<LI class="item first"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb'" > 
+							<LI class="item first"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb" > 
 							<A class=product-image title="命运石之门剧场版" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">
-							<IMG alt="命运石之门剧场版" src="images/multiPicCoursel/命运石之门剧场版.jpg" width=170 height=257></A>
+							<IMG title="命运石之门剧场版" src="images/multiPicCoursel/命运石之门剧场版.jpg" width=170 height=257></A>
 								<H3 class=product-name>
 								<A title="命运石之门剧场版" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">命运石之门剧场版</A>
 									<BUTTON class="button btn-cart" title="Add to Cart" >
@@ -1031,7 +1093,7 @@
 								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">命运石之门剧场版</a></h5></div>
 							</LI>
 							
-							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb'" ><A class=product-image title="萤火之森" 
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb" ><A class=product-image title="萤火之森" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb"><IMG 
 			  alt="萤火之森" src="images/multiPicCoursel/萤火之森.jpg" width=170 
 			  height=257></A>
@@ -1045,9 +1107,9 @@
 							
 							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb" ><A class=product-image title="死神剧场版大合集" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb"><IMG 
-			  alt="死神" src="images/multiPicCoursel/死神剧场版.jpg" width=170 
+			  title="死神" src="images/multiPicCoursel/死神剧场版.jpg" width=170 
 			  height=257></A>
-								<H3 class=product-name><A title="死神剧场版大合集">死神剧场版大合集</A>
+								<H3 class=product-name><A title="死神剧场版大合集" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb">死神剧场版大合集</A>
 									<BUTTON class="button btn-cart" title="Add to Cart"><SPAN><SPAN>Add 
 									to Cart</SPAN></SPAN></BUTTON>
 								</H3>
@@ -1056,7 +1118,7 @@
 							
 							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=kzjjjcb" ><A class=product-image title="空之境界剧场版" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=kzjjjcb"><IMG 
-			  alt="空之境界剧场版" src="images/multiPicCoursel/空之境界剧场版.jpg" width=170 
+			  title="空之境界剧场版" src="images/multiPicCoursel/空之境界剧场版.jpg" width=170 
 			  height=257></A>
 								<H3 class=product-name><A title="空之境界剧场版" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=kzjjjcb">空之境界剧场版</A>
@@ -1065,9 +1127,9 @@
 								</H3>
 								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=kzjjjcb">空之境界</a></h5></div>
 							</LI>
-							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb'" ><A class=product-image title="约会大作战剧场版" 
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb" ><A class=product-image title="约会大作战剧场版" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb"><IMG 
-			  alt="约会大作战剧场版" src="images/multiPicCoursel/约会大作战剧场版.jpg" width=170 
+			  title="约会大作战剧场版" src="images/multiPicCoursel/约会大作战剧场版.jpg" width=170 
 			  height=257></A>
 								<H3 class=product-name><A title="约会大作战剧场版" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb">约会大作战剧场版</A>
@@ -1076,9 +1138,9 @@
 								</H3>
 								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb">约会大作战</a></h5></div>
 							</LI>
-							<LI class="item last"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb'" ><A class=product-image title="希德尼娅的骑士剧场版" 
+							<LI class="item last"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb" ><A class=product-image title="希德尼娅的骑士剧场版" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb"><IMG 
-			  alt="希德尼娅的骑士剧场版" src="images/multiPicCoursel/希德尼娅的骑士剧场版.jpg" width=170 
+			  title="希德尼娅的骑士剧场版" src="images/multiPicCoursel/希德尼娅的骑士剧场版.jpg" width=170 
 			  height=257></A>
 								<H3 class=product-name><A title="Lorem ipsum dolor sit 3" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb">希德尼娅的骑士剧场版</A>
@@ -1087,9 +1149,9 @@
 								</H3>
 								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb">希德尼娅的骑士剧场版</a></h5></div>
 							</LI>
-							<LI class="item last"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb'" ><A class=product-image title="火影忍者剧场版" 
+							<LI class="item last"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb" ><A class=product-image title="火影忍者剧场版" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb"><IMG 
-			  alt="火影忍者剧场版" src="images/multiPicCoursel/火影忍者剧场版.jpg" width=170 
+			  title="火影忍者剧场版" src="images/multiPicCoursel/火影忍者剧场版.jpg" width=170 
 			  height=257></A>
 								<H3 class=product-name><A title="Lorem ipsum dolor sit 3" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb">火影忍者剧场版大合集</A>
@@ -1127,7 +1189,7 @@
 			
 		<div class="myCustomBreadcrumb">
 			<ol class="breadcrumb" style="background-color:#ffffff;height:40px;margin-bottom: 10px">
-			  <li class="active" style="color:#F16985"><h4>热血新番</h4></li>
+			  <li class="active" style="color:#F16985"><h4>人气作品</h4></li>
 			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yr">亚人</a></li>
 			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszm">命运石之门</a></li>
 			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=zywbczdjd">只有我不存在的街道</a></li>
@@ -1139,98 +1201,6 @@
 		
 	
 			
-			<%-- <div class="cms-home">
-			<DIV class="indent-col-main">
-				<DIV class="std"><BR>
-				</DIV>
-				<DIV class="block-slider">
-					<DIV class="anythingSlider">
-						<UL id="slider_list" class="products-grid">
-							<LI><IMG  src="images/multiPicCoursel/命运石之门剧场版.jpg" width=170 height=257></A>
-								<H3 class=product-name>
-								<A title="命运石之门剧场版" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">命运石之门剧场版</A>
-									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
-									to Cart</SPAN></SPAN></BUTTON>
-								</H3>
-							<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">命运石之门剧场版</a></h5></div>
-							</LI>
-							
-							<LI  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb'" class=item><A class=product-image title="萤火之森" 
-			  href="#"><IMG 
-			  alt="萤火之森" src="images/multiPicCoursel/萤火之森.jpg" width=170 
-			  height=257></A>
-								<H3 class=product-name><A title="萤火之森" 
-			  href="#">萤火之森</A>
-									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
-									to Cart</SPAN></SPAN></BUTTON>
-								</H3>
-								<div style="position:absolute;top:260px;left:30px"><h5><a href="#">萤火之森</a></h5></div>
-							</LI>
-							
-							<LI  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb'" class=item><A class=product-image title="死神剧场版大合集" 
-			  href="#"><IMG 
-			  alt="死神" src="images/multiPicCoursel/死神剧场版.jpg" width=170 
-			  height=257></A>
-								<H3 class=product-name><A title="死神剧场版大合集">死神剧场版大合集</A>
-									<BUTTON class="button btn-cart" title="Add to Cart"><SPAN><SPAN>Add 
-									to Cart</SPAN></SPAN></BUTTON>
-								</H3>
-								<div style="position:absolute;top:260px;left:30px"><h5><a href="#">死神</a></h5></div>
-							</LI>
-							
-							<LI  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=kzjjjcb'" class=item><A class=product-image title="空之境界剧场版" 
-			  href="#"><IMG 
-			  alt="空之境界剧场版" src="images/multiPicCoursel/空之境界剧场版.jpg" width=170 
-			  height=257></A>
-								<H3 class=product-name><A title="空之境界剧场版" 
-			  href="#">空之境界剧场版</A>
-									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
-									to Cart</SPAN></SPAN></BUTTON>
-								</H3>
-								<div style="position:absolute;top:260px;left:30px"><h5><a href="#">空之境界</a></h5></div>
-							</LI>
-							<LI  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb'" class=item><A class=product-image title="约会大作战剧场版" 
-			  href="#"><IMG 
-			  alt="约会大作战剧场版" src="images/multiPicCoursel/约会大作战剧场版.jpg" width=170 
-			  height=257></A>
-								<H3 class=product-name><A title="约会大作战剧场版" 
-			  href="#">约会大作战剧场版</A>
-									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
-									to Cart</SPAN></SPAN></BUTTON>
-								</H3>
-								<div style="position:absolute;top:260px;left:30px"><h5><a href="#">约会大作战</a></h5></div>
-							</LI>
-							<LI  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb'" class="item last"><A class=product-image title="希德尼娅的骑士剧场版" 
-			  href="#"><IMG 
-			  alt="希德尼娅的骑士剧场版" src="images/multiPicCoursel/希德尼娅的骑士剧场版.jpg" width=170 
-			  height=257></A>
-								<H3 class=product-name><A title="Lorem ipsum dolor sit 3" 
-			  href="#">希德尼娅的骑士剧场版</A>
-									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
-									to Cart</SPAN></SPAN></BUTTON>
-								</H3>
-								<div style="position:absolute;top:260px;left:30px"><h5><a href="#">希德尼娅的骑士剧场版</a></h5></div>
-							</LI>
-							<LI  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb'" class="item last"><A class=product-image title="火影忍者剧场版" 
-			  href="#"><IMG 
-			  alt="火影忍者剧场版" src="images/multiPicCoursel/火影忍者剧场版.jpg" width=170 
-			  height=257></A>
-								<H3 class=product-name><A title="Lorem ipsum dolor sit 3" 
-			  href="#">火影忍者剧场版大合集</A>
-									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
-									to Cart</SPAN></SPAN></BUTTON>
-								</H3>
-								<div style="position:absolute;top:260px;left:30px"><h5><a href="#">火影忍者剧场版</a></h5></div>
-							</LI>
-						</UL>
-					</DIV>
-				</DIV>
-				<DIV id=left_but class="box-left"></DIV>
-				<DIV id=right_but class="box-right"></DIV>
-			</DIV>
-	
-	</div> --%>
-			
 	<div class="cms-home">
 			<DIV class="indent-col-main">
 				<DIV class="std"><BR>
@@ -1238,20 +1208,20 @@
 				<DIV class="block-slider">
 					<DIV class="anythingSlider">
 						<UL id="slider_list" class="products-grid">
-							<LI class="item first"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb'" > 
-							<A class=product-image title="命运石之门剧场版" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">
-							<IMG alt="命运石之门剧场版" src="images/multiPicCoursel/命运石之门剧场版.jpg" width=170 height=257></A>
+							<LI class="item first"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=qzlr" > 
+							<A class=product-image title="全职猎人" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=qzlr">
+							<IMG alt="全职猎人" src="images/multiPicCoursel/全职猎人.jpg" width=170 height=257></A>
 								<H3 class=product-name>
-								<A title="命运石之门剧场版" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">命运石之门剧场版</A>
+								<A title="全职猎人" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=qzlr">全职猎人</A>
 									<BUTTON class="button btn-cart" title="Add to Cart" >
 										<SPAN><SPAN>
 										</SPAN></SPAN>
 									</BUTTON>
 								</H3>
-								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">命运石之门剧场版</a></h5></div>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=qzlr">全职猎人</a></h5></div>
 							</LI>
 							
-							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb'" ><A class=product-image title="萤火之森" 
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb" ><A class=product-image title="萤火之森" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb"><IMG 
 			  alt="萤火之森" src="images/multiPicCoursel/萤火之森.jpg" width=170 
 			  height=257></A>
@@ -1265,29 +1235,29 @@
 							
 							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb" ><A class=product-image title="死神剧场版大合集" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb"><IMG 
-			  alt="死神" src="images/multiPicCoursel/死神剧场版.jpg" width=170 
+			  title="死神" src="images/multiPicCoursel/死神剧场版.jpg" width=170 
 			  height=257></A>
-								<H3 class=product-name><A title="死神剧场版大合集">死神剧场版大合集</A>
+								<H3 class=product-name><A title="死神剧场版大合集" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb">死神剧场版大合集</A>
 									<BUTTON class="button btn-cart" title="Add to Cart"><SPAN><SPAN>Add 
 									to Cart</SPAN></SPAN></BUTTON>
 								</H3>
 								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb">死神</a></h5></div>
 							</LI>
 							
-							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=kzjjjcb" ><A class=product-image title="空之境界剧场版" 
-			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=kzjjjcb"><IMG 
-			  alt="空之境界剧场版" src="images/multiPicCoursel/空之境界剧场版.jpg" width=170 
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=xmyrz" ><A class=product-image title="夏目友人帐" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xmyrz"><IMG 
+			  title="夏目友人帐" src="images/multiPicCoursel/夏目友人帐.jpg" width=170 
 			  height=257></A>
-								<H3 class=product-name><A title="空之境界剧场版" 
-			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=kzjjjcb">空之境界剧场版</A>
+								<H3 class=product-name><A title="夏目友人帐" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xmyrz">夏目友人帐</A>
 									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
 									to Cart</SPAN></SPAN></BUTTON>
 								</H3>
-								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=kzjjjcb">空之境界</a></h5></div>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xmyrz">夏目友人帐</a></h5></div>
 							</LI>
-							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb'" ><A class=product-image title="约会大作战剧场版" 
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb" ><A class=product-image title="约会大作战剧场版" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb"><IMG 
-			  alt="约会大作战剧场版" src="images/multiPicCoursel/约会大作战剧场版.jpg" width=170 
+			  title="约会大作战剧场版" src="images/multiPicCoursel/约会大作战剧场版.jpg" width=170 
 			  height=257></A>
 								<H3 class=product-name><A title="约会大作战剧场版" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb">约会大作战剧场版</A>
@@ -1296,20 +1266,20 @@
 								</H3>
 								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb">约会大作战</a></h5></div>
 							</LI>
-							<LI class="item last"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb'" ><A class=product-image title="希德尼娅的骑士剧场版" 
-			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb"><IMG 
-			  alt="希德尼娅的骑士剧场版" src="images/multiPicCoursel/希德尼娅的骑士剧场版.jpg" width=170 
+							<LI class="item"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=qysn" ><A class=product-image title="轻音少女" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=qysn"><IMG 
+			  title="轻音少女" src="images/multiPicCoursel/轻音少女.jpg" width=170 
 			  height=257></A>
 								<H3 class=product-name><A title="Lorem ipsum dolor sit 3" 
-			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb">希德尼娅的骑士剧场版</A>
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=qysn">轻音少女</A>
 									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
 									to Cart</SPAN></SPAN></BUTTON>
 								</H3>
-								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb">希德尼娅的骑士剧场版</a></h5></div>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=qysn">轻音少女</a></h5></div>
 							</LI>
-							<LI class="item last"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb'" ><A class=product-image title="火影忍者剧场版" 
+							<LI class="item last"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb" ><A class=product-image title="火影忍者剧场版" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb"><IMG 
-			  alt="火影忍者剧场版" src="images/multiPicCoursel/火影忍者剧场版.jpg" width=170 
+			  title="火影忍者剧场版" src="images/multiPicCoursel/火影忍者剧场版.jpg" width=170 
 			  height=257></A>
 								<H3 class=product-name><A title="Lorem ipsum dolor sit 3" 
 			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb">火影忍者剧场版大合集</A>
@@ -1334,10 +1304,239 @@
 		
 			
 			<!-- mySpan4 End -->
-		
-	</div><!-- containerEnd -->
+		<!-- mySpan5 start-->
 	
-	<div class="container" style="width:1366px;height:320px;background-color:#222;margin-top:50px">
+	<div class="myCustomSpan5">
+
+	
+		<div class="myCustomBreadcrumb">
+			<ol class="breadcrumb" style="background-color:#ffffff;height:40px;margin-bottom: 10px">
+			  <li class="active" style="color:#F16985"><h4>热门日剧</h4></li>
+			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ss">死神</a></li>
+			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=jtjs">家庭教师</a></li>
+			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=lz">龙珠</a></li>
+			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=qyc">犬夜叉</a></li>
+			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=hmbb">海绵宝宝</a></li>
+			</ol>
+			<hr style="width:740px;height:2px;border:none;border-top:2px solid #F16985;margin-left:10px;margin-top: 0px"/>
+		</div>
+		
+		<div class="cms-home">
+			<DIV class="indent-col-main">
+				<DIV class="std"><BR>
+				</DIV>
+				<DIV class="block-slider">
+					<DIV class="anythingSlider">
+						<UL id="slider_list" class="products-grid">
+							<LI class="item first"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb" > 
+							<A class=product-image title="命运石之门剧场版" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">
+							<IMG title="命运石之门剧场版" src="images/multiPicCoursel/命运石之门剧场版.jpg" width=170 height=257></A>
+								<H3 class=product-name>
+								<A title="命运石之门剧场版" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">命运石之门剧场版</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" >
+										<SPAN><SPAN>
+										</SPAN></SPAN>
+									</BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">命运石之门剧场版</a></h5></div>
+							</LI>
+							
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb" ><A class=product-image title="萤火之森" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb"><IMG 
+			  alt="萤火之森" src="images/multiPicCoursel/萤火之森.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="萤火之森" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb">萤火之森</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb">萤火之森</a></h5></div>
+							</LI>
+							
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb" ><A class=product-image title="死神剧场版大合集" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb"><IMG 
+			  title="死神" src="images/multiPicCoursel/死神剧场版.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="死神剧场版大合集"  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb">死神剧场版大合集</A>
+									<BUTTON class="button btn-cart" title="Add to Cart"><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb">死神</a></h5></div>
+							</LI>
+							
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=bzzs" ><A class=product-image title="半泽直树" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=bzzs"><IMG 
+			  title="半泽直树" src="images/multiPicCoursel/半泽直树.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="半泽直树" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=bzzs">半泽直树</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=bzzs">半泽直树</a></h5></div>
+							</LI>
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=syst'" ><A class=product-image title="深夜食堂" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=syst"><IMG 
+			  title="深夜食堂" src="images/multiPicCoursel/深夜食堂.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="深夜食堂" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=syst">深夜食堂</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=syst">深夜食堂</a></h5></div>
+							</LI>
+							<LI class="item last"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb'" ><A class=product-image title="希德尼娅的骑士剧场版" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb"><IMG 
+			  title="希德尼娅的骑士剧场版" src="images/multiPicCoursel/希德尼娅的骑士剧场版.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="Lorem ipsum dolor sit 3" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb">希德尼娅的骑士剧场版</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb">希德尼娅的骑士剧场版</a></h5></div>
+							</LI>
+							<LI class="item last"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb'" ><A class=product-image title="火影忍者剧场版" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb"><IMG 
+			  title="火影忍者剧场版" src="images/multiPicCoursel/火影忍者剧场版.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="Lorem ipsum dolor sit 3" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb">火影忍者剧场版大合集</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=hyrzjcb">火影忍者剧场版</a></h5></div>
+							</LI>
+						</UL>
+					</DIV>
+				</DIV>
+				<DIV id=left_but class="box-left"></DIV>
+				<DIV id=right_but class="box-right"></DIV>
+			</DIV>
+	
+	</div>
+</div> 
+			<!-- mySpan5 End -->
+			<!-- mySpan6 start-->
+	
+	<div class="myCustomSpan6">
+
+	
+		<div class="myCustomBreadcrumb">
+			<ol class="breadcrumb" style="background-color:#ffffff;height:40px;margin-bottom: 10px">
+			  <li class="active" style="color:#F16985"><h4>站长精选</h4></li>
+			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ss">死神</a></li>
+			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=jtjs">家庭教师</a></li>
+			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=lz">龙珠</a></li>
+			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=qyc">犬夜叉</a></li>
+			  <li><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=hmbb">海绵宝宝</a></li>
+			</ol>
+			<hr style="width:740px;height:2px;border:none;border-top:2px solid #F16985;margin-left:10px;margin-top: 0px"/>
+		</div>
+		
+		<div class="cms-home">
+			<DIV class="indent-col-main">
+				<DIV class="std"><BR>
+				</DIV>
+				<DIV class="block-slider">
+					<DIV class="anythingSlider">
+						<UL id="slider_list" class="products-grid">
+							<LI class="item first"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb" > 
+							<A class=product-image title="命运石之门剧场版" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">
+							<IMG title="命运石之门剧场版" src="images/multiPicCoursel/命运石之门剧场版.jpg" width=170 height=257></A>
+								<H3 class=product-name>
+								<A title="命运石之门剧场版" href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">命运石之门剧场版</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" >
+										<SPAN><SPAN>
+										</SPAN></SPAN>
+									</BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=myszmjcb">命运石之门剧场版</a></h5></div>
+							</LI>
+							
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb" ><A class=product-image title="萤火之森" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb"><IMG 
+			  alt="萤火之森" src="images/multiPicCoursel/萤火之森.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="萤火之森" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb">萤火之森</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhzsjcb">萤火之森</a></h5></div>
+							</LI>
+							
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb" ><A class=product-image title="死神剧场版大合集" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb"><IMG 
+			  title="死神" src="images/multiPicCoursel/死神剧场版.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="死神剧场版大合集"  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb">死神剧场版大合集</A>
+									<BUTTON class="button btn-cart" title="Add to Cart"><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=ssjcb">死神</a></h5></div>
+							</LI>
+							
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=angelbeats" ><A class=product-image title="Angel Beats" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=angelbeats"><IMG 
+			  title="Angel Beats" src="images/multiPicCoursel/angelbeats.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="Angel Beats" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=angelbeats">Angel Beats</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=angelbeats">Angel Beats</a></h5></div>
+							</LI>
+							<LI class=item  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb" ><A class=product-image title="约会大作战剧场版" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb"><IMG 
+			  title="约会大作战剧场版" src="images/multiPicCoursel/约会大作战剧场版.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="约会大作战剧场版" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb">约会大作战剧场版</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=yhdzzjcb">约会大作战</a></h5></div>
+							</LI>
+							<LI class="item last"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb" ><A class=product-image title="希德尼娅的骑士剧场版" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb"><IMG 
+			  title="希德尼娅的骑士剧场版" src="images/multiPicCoursel/希德尼娅的骑士剧场版.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="Lorem ipsum dolor sit 3" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb">希德尼娅的骑士剧场版</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=xdnydqsjcb">希德尼娅的骑士剧场版</a></h5></div>
+							</LI>
+							<LI class="item last"  onclick="document.location='${pageContext.request.contextPath }/user/contentFrame.action?itemename=charlotte" ><A class=product-image title="charlotte" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=charlotte"><IMG 
+			  title="charlotte" src="images/multiPicCoursel/charlotte.jpg" width=170 
+			  height=257></A>
+								<H3 class=product-name><A title="Lorem ipsum dolor sit 3" 
+			  href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=charlotte">charlotte</A>
+									<BUTTON class="button btn-cart" title="Add to Cart" ><SPAN><SPAN>Add 
+									to Cart</SPAN></SPAN></BUTTON>
+								</H3>
+								<div style="position:absolute;top:260px;left:30px"><h5><a href="${pageContext.request.contextPath }/user/contentFrame.action?itemename=charlotte">charlotte</a></h5></div>
+							</LI>
+						</UL>
+					</DIV>
+				</DIV>
+				<DIV id=left_but class="box-left"></DIV>
+				<DIV id=right_but class="box-right"></DIV>
+			</DIV>
+	
+	</div>
+</div> 
+			<!-- mySpan6 End -->
+	</div><!-- containerEnd ////////////////////////////-->
+	
+	
+	<div style="width:100%;background-color:#222;">
+	<div  style="width:1366px;height:320px;background-color:#222;margin-top:50px;margin-left:auto;margin-right:auto">
 		<div style="width:80%;height:100%;margin-left:130px;position:relative">
 			<div class="footerMsg">
 				<h3 style="color:#fff"><strong>关于</strong></h3>
@@ -1360,42 +1559,33 @@
 			<div style="width:400px;height:200px;position:absolute;bottom:60px;left:400px">
 				<img src="images/tv.ico" style="width:80px;margin-top:50px;float:left"/>
 				<h3 style="display:inline-block;margin-top:60px;margin-left:20px;color:#aaa">我的个人资源分享小博客</h3><br>
-				<h6 style="display:inline-block;color:#aaa;margin-left:20px;">http://zyyblog.com</h6>
+				<h6 style="display:inline-block;color:#aaa;margin-left:20px;">http://www.ybcome.com</h6>
 			</div>
+			
 			<div style="width:100%;height:30px;text-align:center;margin-top:10px;display:inline-block;">
 				<p style="color:#fff;display:inline-block;">&copy;我的个人资源分享小博客|本站是个动漫分享的个人小博客,本站资源均网络收集,无任何盈利目的,如有侵权,联系24小时内删除</p>&nbsp;&nbsp;
 				<script type="text/javascript">
 					var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-					document.write(unescape("%3Cspan id='cnzz_stat_icon_1258953832'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258953832%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+					document.write(unescape("%3Cspan id='cnzz_stat_icon_1259150916'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259150916%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
 				</script>
 			</div>
-				<!-- 站长统计 -->
-			
+				
+		
 		</div>
 	</div>
 		
+	</div>
 	
 	
 	
+</div><!-- 最顶层div -->
+	 <!--  -->
 	
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/myDefault.js"></script>	
 
-	
-	
-	
-	
 
-	<script type="text/javascript">
-		(function(){
-			document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));
-			var bdcs = document.createElement('script');
-			bdcs.type = 'text/javascript';
-			bdcs.async = true;
-			bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=15860985707000464671' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(bdcs, s);})();
-	</script>
-
- 	<!-- End -->
  	<script type="text/javascript">
 					$(function(){
 						var i = null;
@@ -1458,7 +1648,10 @@
  	<!-- picture轮播 -->
  	<script src="js/jquery.hiSlider.min.js"></script>
  	<script>
-	    $('.hiSlider1').hiSlider();
+ 		$(function(){
+ 			$('.hiSlider1').hiSlider();
+ 		});
+	    
 	</script>
 	<!-- picture轮播 -->
 	
@@ -1566,26 +1759,67 @@
 		$(function(){
 			var today = new Date();
 			var day = today.getDay();
-			var x = new Array("#sun1", "#mon1", "#tue1", "#wed1", "#thu1", "#fri1","#sat1");
-			var y = new Array("#sun", "#mon", "#tue", "#wed", "#thu", "#fri","#sat");
+			var x = new Array("#mon1", "#tue1", "#wed1", "#thu1", "#fri1","#sat1","#sun1");
+			var y = new Array("#mon", "#tue", "#wed", "#thu", "#fri","#sat","#sun");
 			$('.myActive').each(function(index){
-				if(day == index){
-					$(this).addClass("active");
-					$(x[index]).addClass("active");
-				}
+				if(index<6){
+					
+						if(day == index+1){
+							$(this).addClass("active");
+							$(x[index]).addClass("in");
+							$(x[index]).addClass("active");
+						}
+				
+							}else{
+								if(day==0){
+									$(this).addClass("active");
+									$(x[index]).addClass("in");
+									$(x[index]).addClass("active");
+								}
+									
+							}
+				
 			});
 			$('.myActive1').each(function(index){
-				if(day == index){
-					$(this).addClass("active");
-					$(y[index]).addClass("in");
-					$(y[index]).addClass("active");
-				}
+					if(index<6){
+					
+						if(day == index+1){
+							$(this).addClass("active");
+							$(y[index]).addClass("in");
+							$(y[index]).addClass("active");
+						}
+				
+							}else{
+								if(day==0){
+									$(this).addClass("active");
+									$(y[index]).addClass("in");
+									$(y[index]).addClass("active");
+								}
+									
+							}
+				
 			});
 		});
 	</script>
-	<script type="text/javascript" src="js/myDefault.js">
-		
+	
+	<script type="text/javascript">
+		$(function(){
+			$('#searchIcon').on('click', function(){
+				$('#searchForm').submit();
+			})
+		});
 	</script>
+	<!-- 百度站内搜索 -->
+	<script type="text/javascript">
+		(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));
+		var bdcs = document.createElement('script');
+		bdcs.type = 'text/javascript';
+		bdcs.async = true;
+		bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=10316886824104394470' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(bdcs, s);})();
+	</script>
+ 	<!-- End -->
   </body>
 
 </html>

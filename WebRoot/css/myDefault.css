@@ -2,12 +2,15 @@
 .myNav{
 	width:1366px;
 	height:44px;
-	display:inline-block;
+	display:block;
 	box-shadow:0px 1px 2px #aaaaaa;
 	background-color:rgba(255,255,255,0.4);
+	margin:0px auto;
 	position: absolute;
-	z-index: 2;
+	z-index: 999;
 	align:center;
+	
+	
 }
 .myCustomUserCenter{
 	position: absolute;
@@ -116,6 +119,7 @@
 	display: block;
 	align:center;
 	
+	
 }
 .myCustomNavbar{
 	width:1366px;
@@ -140,12 +144,17 @@
 	padding:10px;
 	border:1px solid #eee;
 }
+.myCarousel:hover{
+	
+	border:1px solid #aaa;
+}
 .myContainer{
 	margin:auto;
 	padding:10px;
 	align:center;
 	width:1162px;
-	height:1750px;
+	
+	height:2650px;
 	display:block;
 	position: relative;
 	top:10px;
@@ -153,7 +162,10 @@
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	
-	background-color: #F2F7F1;
+	/* background-color: #F9F7F1; */
+/* 	box-shadow:0 0 1px rgba(92,92,92,0.3);
+	-webkit-box-shadow:0 0 1px rgba(92,92,92,0.3);
+	-moz-box-shadow:0 0 1px rgba(92,92,92,0.3); */
 	
 }
 
@@ -162,6 +174,9 @@
 	border-radius:5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+	box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-webkit-box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-moz-box-shadow:0 0 20px rgba(92,92,92,0.4);
 	padding: 10px;
 	position: absolute;
 	width: 770px;
@@ -211,6 +226,12 @@
 	width: 770px;
 	height:460px;
 	top:350px;
+	box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-webkit-box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-moz-box-shadow:0 0 20px rgba(92,92,92,0.4);
+}
+.myCustomSpan2:hover{
+	border:1px solid #F16985;
 }
 
 
@@ -225,6 +246,12 @@
 	height:430px;
 	top:830px;
 	z-index: 3;
+	box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-webkit-box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-moz-box-shadow:0 0 20px rgba(92,92,92,0.4);
+}
+.myCustomSpan3:hover{
+	border:1px solid #F16985;
 }
 
 
@@ -233,7 +260,7 @@
 	margin: 10px;
 	top:10px;
 	left:10px;
-	width:750px;
+	width:748px;
 	height:45px;
 	color:#F16985;
 }
@@ -252,8 +279,51 @@
 	top:1300px;
 	z-index: 3;
 	left:10px;
+	box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-webkit-box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-moz-box-shadow:0 0 20px rgba(92,92,92,0.4);
 }
-
+.myCustomSpan4:hover{
+	border:1px solid #F16985;
+}
+.myCustomSpan5{
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 10px;
+	position: absolute;
+	width: 770px;
+	height:430px;
+	top:1750px;
+	z-index: 3;
+	left:10px;
+	box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-webkit-box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-moz-box-shadow:0 0 20px rgba(92,92,92,0.4);
+}
+.myCustomSpan5:hover{
+	border:1px solid #F16985;
+}
+.myCustomSpan6{
+	background-color: #ffffff;
+	border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 10px;
+	position: absolute;
+	width: 770px;
+	height:430px;
+	top:2200px;
+	z-index: 3;
+	left:10px;
+	box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-webkit-box-shadow:0 0 20px rgba(92,92,92,0.4);
+	-moz-box-shadow:0 0 20px rgba(92,92,92,0.4);
+}
+.myCustomSpan6:hover{
+	border:1px solid #F16985;
+}
 
 .myCustomButtonTabContent{
 	margin-top: -14px;

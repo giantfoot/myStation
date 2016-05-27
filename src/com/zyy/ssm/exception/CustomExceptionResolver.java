@@ -15,7 +15,7 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
 		if(ex instanceof CustomException){
 			customException = (CustomException)ex;
 		}else{
-			customException = new CustomException("未知错误");
+			customException = new CustomException("哎呀!速度真慢,返回再试一次就好了..");
 		}
 		
 		//错误信息
